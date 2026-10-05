@@ -260,8 +260,20 @@
       flex-grow: 1;
     }
 
-    .card .card-link {
+    .card-media {
+      display: block;
+      line-height: 0;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 14px;
       margin-top: 14px;
+    }
+
+    .card .card-link {
       font-weight: 600;
       color: var(--accent);
       font-size: 0.92rem;
@@ -269,6 +281,48 @@
 
     .card:hover .card-link {
       color: var(--accent-hover);
+    }
+
+    .card .card-more {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .card .card-more:hover,
+    .card .card-more:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent-hover);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    /* Кликабельные плашки-фильтры внутри карточек */
+    .badge-filter {
+      font-family: inherit;
+      cursor: pointer;
+      transition: filter 0.2s, transform 0.2s;
+    }
+
+    .badge-filter:hover,
+    .badge-filter:focus-visible {
+      filter: brightness(0.95);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .badge-filter.is-active {
+      box-shadow: 0 0 0 2px var(--accent);
     }
 
     /* ---------- Подвал ---------- */
@@ -414,85 +468,111 @@
   <main class="container">
 
     <!-- ==================== ПРОГРАММЫ ==================== -->
-    <div class="section-title">
-      <h2>Программы</h2>
-    </div>
-
     <section class="grid">
 
-      <a class="card" data-types="web" href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer">
-        <img class="card-img" src="images/drawstory.jpg" alt="DrawStory — сказка по рисунку" loading="lazy" />
+      <article class="card" data-types="web">
+        <a class="card-media" href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer" aria-label="Открыть DrawStory">
+          <img class="card-img" src="images/drawstory.jpg" alt="DrawStory — сказка по рисунку" loading="lazy" />
+        </a>
         <div class="card-body">
           <div class="card-badges">
-            <span class="badge web">веб-приложение</span>
+            <button type="button" class="badge web badge-filter" data-filter="web">веб-приложение</button>
           </div>
           <h3>DrawStory</h3>
           <p>Сказка по рисунку: превращает детский набросок в персональную аудиосказку — вашим голосом и с мягкой музыкой.</p>
-          <div class="card-link">Открыть приложение →</div>
+          <div class="card-actions">
+            <a class="card-link" href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer">Открыть приложение →</a>
+            <a class="card-more" href="more.html?id=drawstory">Узнать больше</a>
+          </div>
         </div>
-      </a>
+      </article>
 
-      <a class="card" data-types="web" href="https://geminipoint.dvorzhik.site/" target="_blank" rel="noopener noreferrer">
-        <img class="card-img" src="images/geminipoint.jpg" alt="GeminiPoint" loading="lazy" />
+      <article class="card" data-types="web">
+        <a class="card-media" href="https://geminipoint.dvorzhik.site/" target="_blank" rel="noopener noreferrer" aria-label="Открыть GeminiPoint">
+          <img class="card-img" src="images/geminipoint.jpg" alt="GeminiPoint" loading="lazy" />
+        </a>
         <div class="card-body">
           <div class="card-badges">
-            <span class="badge web">веб-приложение</span>
+            <button type="button" class="badge web badge-filter" data-filter="web">веб-приложение</button>
           </div>
           <h3>GeminiPoint</h3>
           <p>Чат с нейросетью Gemini прямо в браузере: без установки, с открытым доступом даже там, где нужен VPN.</p>
-          <div class="card-link">Открыть приложение →</div>
+          <div class="card-actions">
+            <a class="card-link" href="https://geminipoint.dvorzhik.site/" target="_blank" rel="noopener noreferrer">Открыть приложение →</a>
+            <a class="card-more" href="more.html?id=geminipoint">Узнать больше</a>
+          </div>
         </div>
-      </a>
+      </article>
 
-      <a class="card" data-types="android" href="https://www.dvorzhik.ru/personal-sky/" target="_blank" rel="noopener noreferrer">
-        <img class="card-img" src="images/personal_sky.jpg" alt="Personal Sky — Личный небосвод" loading="lazy" />
+      <article class="card" data-types="android">
+        <a class="card-media" href="https://www.dvorzhik.ru/personal-sky/" target="_blank" rel="noopener noreferrer" aria-label="Открыть Personal Sky">
+          <img class="card-img" src="images/personal_sky.jpg" alt="Personal Sky — Личный небосвод" loading="lazy" />
+        </a>
         <div class="card-body">
           <div class="card-badges">
-            <span class="badge android">Android-приложение</span>
+            <button type="button" class="badge android badge-filter" data-filter="android">Android-приложение</button>
           </div>
           <h3>Personal Sky · Личный небосвод</h3>
           <p>Трекер привычек без чувства вины: каждый выполненный день зажигает звезду и складывается в созвездие.</p>
-          <div class="card-link">Узнать больше →</div>
+          <div class="card-actions">
+            <a class="card-link" href="https://www.dvorzhik.ru/personal-sky/" target="_blank" rel="noopener noreferrer">Открыть приложение →</a>
+            <a class="card-more" href="more.html?id=personal-sky">Узнать больше</a>
+          </div>
         </div>
-      </a>
+      </article>
 
-      <a class="card" data-types="web telegram" href="https://t.me/zenreader_bot" target="_blank" rel="noopener noreferrer">
-        <img class="card-img" src="images/zenreader.jpg" alt="ZenReader" loading="lazy" />
+      <article class="card" data-types="web telegram">
+        <a class="card-media" href="https://t.me/zenreader_bot" target="_blank" rel="noopener noreferrer" aria-label="Открыть ZenReader">
+          <img class="card-img" src="images/zenreader.jpg" alt="ZenReader" loading="lazy" />
+        </a>
         <div class="card-body">
           <div class="card-badges">
-            <span class="badge web">веб-приложение</span>
-            <span class="badge telegram">Telegram-bot</span>
+            <button type="button" class="badge web badge-filter" data-filter="web">веб-приложение</button>
+            <button type="button" class="badge telegram badge-filter" data-filter="telegram">Telegram-bot</button>
           </div>
           <h3>ZenReader</h3>
           <p>Чистое чтение статей без рекламы, пейволов и трекеров: забирает текст с любого сайта и переводит в один клик.</p>
-          <div class="card-link">Открыть бота →</div>
+          <div class="card-actions">
+            <a class="card-link" href="https://t.me/zenreader_bot" target="_blank" rel="noopener noreferrer">Открыть бота →</a>
+            <a class="card-more" href="more.html?id=zenreader">Узнать больше</a>
+          </div>
         </div>
-      </a>
+      </article>
 
-      <a class="card" data-types="telegram" href="https://t.me/yamometer_bot" target="_blank" rel="noopener noreferrer">
-        <img class="card-img" src="images/yamometer.jpg" alt="Yamometer" loading="lazy" />
+      <article class="card" data-types="telegram">
+        <a class="card-media" href="https://t.me/yamometer_bot" target="_blank" rel="noopener noreferrer" aria-label="Открыть Yamometer">
+          <img class="card-img" src="images/yamometer.jpg" alt="Yamometer" loading="lazy" />
+        </a>
         <div class="card-body">
           <div class="card-badges">
-            <span class="badge telegram">Telegram-bot</span>
+            <button type="button" class="badge telegram badge-filter" data-filter="telegram">Telegram-bot</button>
           </div>
           <h3>Yamometer</h3>
           <p>Погода и состояние моря для пляжей Израиля: волны, температура, веб-камеры и утренняя сводка к кофе.</p>
-          <div class="card-link">Открыть бота →</div>
+          <div class="card-actions">
+            <a class="card-link" href="https://t.me/yamometer_bot" target="_blank" rel="noopener noreferrer">Открыть бота →</a>
+            <a class="card-more" href="more.html?id=yamometer">Узнать больше</a>
+          </div>
         </div>
-      </a>
+      </article>
 
-      <a class="card" data-types="web telegram" href="https://vizborbot-j9kyvder.manus.space/" target="_blank" rel="noopener noreferrer">
-        <img class="card-img" src="images/vizbor.jpg" alt="Yuri Vizbor AI" loading="lazy" />
+      <article class="card" data-types="web telegram">
+        <a class="card-media" href="https://vizborbot-j9kyvder.manus.space/" target="_blank" rel="noopener noreferrer" aria-label="Открыть Yuri Vizbor AI">
+          <img class="card-img" src="images/vizbor.jpg" alt="Yuri Vizbor AI" loading="lazy" />
+        </a>
         <div class="card-body">
           <div class="card-badges">
-            <span class="badge web">веб-приложение</span>
-            <span class="badge telegram">Telegram-bot</span>
+            <button type="button" class="badge web badge-filter" data-filter="web">веб-приложение</button>
+            <button type="button" class="badge telegram badge-filter" data-filter="telegram">Telegram-bot</button>
           </div>
           <h3>Yuri Vizbor AI</h3>
           <p>«Виртуальный Визбор»: диалог о горах, дружбе и песнях — строго через призму подлинного наследия барда.</p>
-          <div class="card-link">Открыть приложение →</div>
+          <div class="card-actions">
+            <a class="card-link" href="https://vizborbot-j9kyvder.manus.space/" target="_blank" rel="noopener noreferrer">Открыть приложение →</a>
+            <a class="card-more" href="more.html?id=vizbor">Узнать больше</a>
+          </div>
         </div>
-      </a>
+      </article>
 
     </section>
 
@@ -521,10 +601,11 @@
   </footer>
 
   <script>
-    // Плашки-фильтры: показывают только выбранные типы приложений.
-    // Если не выбрано ни одной плашки — показываются все программы.
+    // Плашки-фильтры (в шапке и внутри карточек): показывают только выбранные
+    // типы приложений. Если не выбрано ни одного — показываются все программы.
     (function () {
-      var filters = document.querySelectorAll('#filters .tag');
+      var chips = document.querySelectorAll('#filters .tag');
+      var badges = document.querySelectorAll('.card .badge-filter');
       var cards = document.querySelectorAll('.grid .card');
       var selected = {};
 
@@ -535,19 +616,28 @@
           var show = !any || types.some(function (t) { return selected[t]; });
           card.classList.toggle('is-hidden', !show);
         });
+        chips.forEach(function (el) {
+          el.classList.toggle('is-active', !!selected[el.getAttribute('data-filter')]);
+        });
+        badges.forEach(function (el) {
+          el.classList.toggle('is-active', !!selected[el.getAttribute('data-filter')]);
+        });
       }
 
-      filters.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var f = btn.getAttribute('data-filter');
-          if (selected[f]) {
-            delete selected[f];
-            btn.classList.remove('is-active');
-          } else {
-            selected[f] = true;
-            btn.classList.add('is-active');
-          }
-          apply();
+      function toggle(el) {
+        var f = el.getAttribute('data-filter');
+        if (selected[f]) { delete selected[f]; } else { selected[f] = true; }
+        apply();
+      }
+
+      [].forEach.call(chips, function (el) {
+        el.addEventListener('click', function () { toggle(el); });
+      });
+      [].forEach.call(badges, function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle(el);
         });
       });
     })();

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Узнать больше — DVORZHIK · PROGRAMS</title>
+  <link rel="icon" type="image/png" sizes="160x160" href="images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card-bg: #f8fafc;
+      --card-border: #e2e8f0;
+      --accent: #ca8a04;
+      --accent-hover: #a16207;
+      --accent-soft: #fef3c7;
+      --accent-border: #fcd34d;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+    .back { display: inline-block; margin: 28px 0 22px; font-weight: 600; font-size: 0.95rem; }
+    .back:hover { color: var(--accent-hover); }
+    .detail {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 36px 32px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      color: #854d0e;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      margin: 0 6px 6px 0;
+    }
+    h1 { font-size: 1.9rem; font-weight: 800; margin: 14px 0; }
+    .lead { color: var(--text-muted); font-size: 1.05rem; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 26px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent-hover); color: #ffffff; transform: translateY(-2px); }
+    footer {
+      border-top: 1px solid var(--card-border);
+      margin-top: 48px;
+      padding: 26px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 14px; }
+      .detail { padding: 26px 20px; }
+      h1 { font-size: 1.5rem; }
+    }
+  </style>
+  <!-- Google Analytics 4 (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0B5JG034H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-M0B5JG034H');
+  </script>
+</head>
+<body>
+
+  <main class="container">
+    <a class="back" href="index.html">← К программам</a>
+
+    <article class="detail">
+      <div id="program-badges"></div>
+      <h1 id="program-name">Программа</h1>
+      <p class="lead">Здесь скоро появится подробный рассказ о программе: как она появилась, что умеет и кому будет полезна.</p>
+      <p class="lead" style="margin-top: 10px;">А пока её можно открыть и попробовать.</p>
+      <a class="btn-primary" id="program-open" href="index.html">Открыть →</a>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">© Aleksandr Dvorzhitckii</div>
+  </footer>
+
+  <script>
+    // Данные программ для страницы «Узнать больше».
+    // Пока это страница-заглушка — текст рассказа добавим позже.
+    var PROGRAMS = {
+      'drawstory':    { name: 'DrawStory', kinds: ['веб-приложение'], app: 'https://drawstory.dvorzhik.site/' },
+      'geminipoint':  { name: 'GeminiPoint', kinds: ['веб-приложение'], app: 'https://geminipoint.dvorzhik.site/' },
+      'personal-sky': { name: 'Personal Sky · Личный небосвод', kinds: ['Android-приложение'], app: 'https://www.dvorzhik.ru/personal-sky/' },
+      'zenreader':    { name: 'ZenReader', kinds: ['веб-приложение', 'Telegram-bot'], app: 'https://t.me/zenreader_bot' },
+      'yamometer':    { name: 'Yamometer', kinds: ['Telegram-bot'], app: 'https://t.me/yamometer_bot' },
+      'vizbor':       { name: 'Yuri Vizbor AI', kinds: ['веб-приложение', 'Telegram-bot'], app: 'https://vizborbot-j9kyvder.manus.space/' }
+    };
+
+    (function () {
+      var id = new URLSearchParams(window.location.search).get('id');
+      var p = PROGRAMS[id];
+      if (!p) return;
+      document.getElementById('program-name').textContent = p.name;
+      document.getElementById('program-open').href = p.app;
+      document.getElementById('program-badges').innerHTML = p.kinds.map(function (k) {
+        return '<span class="badge">' + k + '</span>';
+      }).join('');
+      document.title = p.name + ' — DVORZHIK · PROGRAMS';
+    })();
+  </script>
+
+</body>
+</html>
