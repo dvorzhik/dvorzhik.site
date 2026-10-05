@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Дворжик — программы и сервисы</title>
+  <link rel="icon" type="image/png" sizes="160x160" href="images/favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+  <meta name="description" content="Программы и сервисы Александра Дворжицкого (Дворжика): DrawStory, GeminiPoint, Personal Sky, ZenReader, Yamometer, Yuri Vizbor AI и другие. Веб-приложения, Telegram-боты и Android-приложения." />
+  <meta name="theme-color" content="#0f172a" />
+
+  <!-- Open Graph для красивых превью в мессенджерах -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Дворжик — программы и сервисы" />
+  <meta property="og:description" content="Веб-приложения, Telegram-боты и Android-приложения: DrawStory, GeminiPoint, Personal Sky, ZenReader, Yamometer и другие." />
+  <meta property="og:url" content="https://www.dvorzhik.site/" />
+  <meta property="og:image" content="https://www.dvorzhik.site/images/drawstory.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card-bg: #f8fafc;
+      --card-border: #e2e8f0;
+      --accent: #ca8a04;
+      --accent-hover: #a16207;
+      --accent-soft: #fef3c7;
+      --accent-border: #fcd34d;
+      --accent-shadow: rgba(202, 138, 4, 0.18);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --link: #0284c7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ---------- Шапка / герой ---------- */
+    .hero {
+      position: relative;
+      padding: 70px 0 54px;
+      text-align: center;
+      background:
+        radial-gradient(1100px 380px at 50% -160px, var(--accent-soft) 0%, rgba(254, 243, 199, 0) 70%),
+        linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .hero h1 .accent {
+      color: var(--accent);
+    }
+
+    .hero .subtitle {
+      margin-top: 14px;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero .tags {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .hero .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      background: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ---------- Заголовок секции ---------- */
+    .section-title {
+      text-align: center;
+      margin: 48px 0 22px;
+    }
+
+    .section-title h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .section-title p {
+      margin-top: 6px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ---------- Сетка программ ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      border-color: var(--accent);
+      color: var(--text-main);
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: #ffffff;
+      border-bottom: 1px solid var(--card-border);
+      display: block;
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      padding: 18px 20px 20px;
+    }
+
+    .card-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      line-height: 1.5;
+      white-space: nowrap;
+    }
+
+    .badge.web {
+      color: #854d0e;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+    }
+
+    .badge.telegram {
+      color: #0369a1;
+      background: #e0f2fe;
+      border: 1px solid #7dd3fc;
+    }
+
+    .badge.android {
+      color: #15803d;
+      background: #dcfce7;
+      border: 1px solid #86efac;
+    }
+
+    .badge.on {
+      color: #15803d;
+      background: #dcfce7;
+      border: 1px solid #86efac;
+    }
+
+    .badge.off {
+      color: #64748b;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      flex-grow: 1;
+    }
+
+    .card .card-link {
+      margin-top: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.92rem;
+    }
+
+    .card:hover .card-link {
+      color: var(--accent-hover);
+    }
+
+    /* Карточки архива: без перехода и без «подпрыгивания» */
+    .card.is-static {
+      cursor: default;
+    }
+
+    .card.is-static:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: var(--card-border);
+    }
+
+    .card.is-static .card-link {
+      color: var(--text-muted);
+    }
+
+    .card.is-static .card-img {
+      filter: grayscale(0.5);
+      opacity: 0.85;
+    }
+
+    /* ---------- Подвал ---------- */
+    footer {
+      border-top: 1px solid var(--card-border);
+      margin-top: 54px;
+      padding: 28px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 18px;
+      margin-top: 14px;
+      font-size: 0.88rem;
+    }
+
+    /* ---------- Кнопка поддержки ---------- */
+    .support-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 7px 16px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--card-bg);
+      color: var(--accent-hover);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+      /* Ширина не меняется при смене фразы: значение считает скрипт,
+         а 0.85rem — запас до загрузки Inter */
+      min-width: 12.5em;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .support-btn__icon,
+    .support-btn__label {
+      display: block;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .support-btn__icon.is-fading,
+    .support-btn__label.is-fading {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+
+    .support-btn:hover,
+    .support-btn:focus-visible {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px var(--accent-shadow);
+    }
+
+    .support-btn:active {
+      transform: translateY(0);
+    }
+
+    .support-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* ---------- Адаптивность ---------- */
+    @media (max-width: 820px) {
+      .hero {
+        padding: 54px 0 40px;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 14px;
+      }
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .hero .subtitle {
+        font-size: 1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card,
+      .support-btn {
+        transition: none;
+      }
+      .card:hover {
+        transform: none;
+      }
+    }
+  </style>
+  <!-- Google Analytics 4 (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0B5JG034H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-M0B5JG034H');
+  </script>
+</head>
+<body>
+
+  <!-- ==================== ГЕРОЙ ==================== -->
+  <header class="hero">
+    <div class="container">
+      <h1>Дворжик <span class="accent">· программы</span></h1>
+      <p class="subtitle">
+        Веб-приложения, Telegram-боты и Android-приложения, которые я делаю сам
+        (и вместе с ИИ). Без рекламы, подписок и лишнего шума — просто полезные штуки.
+      </p>
+      <div class="tags">
+        <span class="tag">🎨 Приложения для детей</span>
+        <span class="tag">🤖 Нейросети</span>
+        <span class="tag">🌊 Погода и море</span>
+        <span class="tag">📖 Чтение без рекламы</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ==================== ПРОГРАММЫ ==================== -->
+    <div class="section-title">
+      <h2>Программы</h2>
+      <p>Выберите, что интересно — и попробуйте прямо сейчас.</p>
+    </div>
+
+    <section class="grid">
+
+      <a class="card" href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer">
+        <img class="card-img" src="images/drawstory.png" alt="DrawStory — сказка по рисунку" loading="lazy" />
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge web">веб-приложение</span>
+            <span class="badge on">активен</span>
+          </div>
+          <h3>DrawStory</h3>
+          <p>Сказка по рисунку: превращает детский набросок в персональную аудиосказку — вашим голосом и с мягкой музыкой.</p>
+          <div class="card-link">Открыть приложение →</div>
+        </div>
+      </a>
+
+      <a class="card" href="https://geminipoint.dvorzhik.site/" target="_blank" rel="noopener noreferrer">
+        <img class="card-img" src="images/GP.png" alt="GeminiPoint" loading="lazy" />
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge web">веб-приложение</span>
+            <span class="badge on">активен</span>
+          </div>
+          <h3>GeminiPoint</h3>
+          <p>Чат с нейросетью Gemini прямо в браузере: без установки, с открытым доступом даже там, где нужен VPN.</p>
+          <div class="card-link">Открыть приложение →</div>
+        </div>
+      </a>
+
+      <a class="card" href="https://www.dvorzhik.ru/personal-sky/" target="_blank" rel="noopener noreferrer">
+        <img class="card-img" src="images/personal_sky.jpg" alt="Personal Sky — Личный небосвод" loading="lazy" />
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge android">Android-приложение</span>
+          </div>
+          <h3>Personal Sky · Личный небосвод</h3>
+          <p>Трекер привычек без чувства вины: каждый выполненный день зажигает звезду и складывается в созвездие.</p>
+          <div class="card-link">Узнать больше →</div>
+        </div>
+      </a>
+
+      <a class="card" href="https://t.me/zenreader_bot" target="_blank" rel="noopener noreferrer">
+        <img class="card-img" src="images/ZenReader.jpg" alt="ZenReader" loading="lazy" />
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge web">веб-приложение</span>
+            <span class="badge telegram">Telegram-bot</span>
+            <span class="badge on">активен</span>
+          </div>
+          <h3>ZenReader</h3>
+          <p>Чистое чтение статей без рекламы, пейволов и трекеров: забирает текст с любого сайта и переводит в один клик.</p>
+          <div class="card-link">Открыть бота →</div>
+        </div>
+      </a>
+
+      <a class="card" href="https://t.me/yamometer_bot" target="_blank" rel="noopener noreferrer">
+        <img class="card-img" src="images/Yamometer.jpg" alt="Yamometer" loading="lazy" />
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge telegram">Telegram-bot</span>
+            <span class="badge on">активен</span>
+          </div>
+          <h3>Yamometer</h3>
+          <p>Погода и состояние моря для пляжей Израиля: волны, температура, веб-камеры и утренняя сводка к кофе.</p>
+          <div class="card-link">Открыть бота →</div>
+        </div>
+      </a>
+
+      <a class="card" href="https://vizborbot-j9kyvder.manus.space/" target="_blank" rel="noopener noreferrer">
+        <img class="card-img" src="images/vizbor.png" alt="Yuri Vizbor AI" loading="lazy" />
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge web">веб-приложение</span>
+            <span class="badge telegram">Telegram-bot</span>
+            <span class="badge on">активен</span>
+          </div>
+          <h3>Yuri Vizbor AI</h3>
+          <p>«Виртуальный Визбор»: диалог о горах, дружбе и песнях — строго через призму подлинного наследия барда.</p>
+          <div class="card-link">Открыть приложение →</div>
+        </div>
+      </a>
+
+    </section>
+
+    <!-- ==================== АРХИВ ==================== -->
+    <div class="section-title">
+      <h2>Ранние эксперименты</h2>
+      <p>Проекты, которые уже отключены, — но с них всё начиналось.</p>
+    </div>
+
+    <section class="grid">
+
+      <div class="card is-static">
+        <img class="card-img" src="images/Sunset_Bot.jpg" alt="SunsetBot" loading="lazy" />
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge telegram">Telegram-bot</span>
+            <span class="badge off">отключен</span>
+          </div>
+          <h3>SunsetBot</h3>
+          <p>Гадание на русской поэтической классике: слово на входе — закат и хорошие стихи на выходе.</p>
+        </div>
+      </div>
+
+      <div class="card is-static">
+        <img class="card-img" src="images/chess_pgn_gif.jpg" alt="Chess PGN@GIF" loading="lazy" />
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge telegram">Telegram-bot</span>
+            <span class="badge off">отключен</span>
+          </div>
+          <h3>Chess PGN@GIF</h3>
+          <p>Превращал текст шахматной партии в формате PGN в видео — с показом вариантов и анализа.</p>
+        </div>
+      </div>
+
+      <div class="card is-static">
+        <img class="card-img" src="images/currency.png" alt="Конвертер валют" loading="lazy" />
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge android">Android-приложение</span>
+          </div>
+          <h3>Конвертер валют</h3>
+          <p>Первое мобильное приложение для тренировки: простой конвертер без рекламы и подписок.</p>
+        </div>
+      </div>
+
+    </section>
+
+
+  </main>
+
+  <!-- ==================== ПОДВАЛ ==================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>© Aleksandr Dvorzhitckii</div>
+        <a class="support-btn"
+           id="supportBtn"
+           href="https://web.tribute.tg/d/QPI"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="Поддержать проект">
+          <span class="support-btn__icon" id="supportIcon" aria-hidden="true">❤️</span>
+          <span class="support-btn__label" id="supportLabel">Сказать спасибо</span>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.dvorzhik.ru/">Личный сайт</a>
+        <a href="https://www.dvorzhik.ru/vibecoding/">Все проекты</a>
+        <a href="https://github.com/dvorzhik" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Кнопка поддержки: плавная смена иконки и надписи,
+    // а также фиксированная ширина кнопки по самой широкой фразе.
+    (function () {
+      var btn = document.getElementById('supportBtn');
+      var icon = document.getElementById('supportIcon');
+      var label = document.getElementById('supportLabel');
+      if (!btn || !icon || !label) return;
+
+      var phrases = [
+        { icon: '❤️', text: 'Сказать спасибо' },
+        { icon: '☕', text: 'Угостить кофе' }
+      ];
+      var FADE_MS = 300;
+      var INTERVAL_MS = 3000;
+      var current = 0;
+      var animating = false;
+
+      // Ширина кнопки = самая широкая из фраз, чтобы при смене текста
+      // кнопка не «дёргалась». Считаем по невидимым слепкам.
+      function fitWidth() {
+        var probe = document.createElement('span');
+        probe.style.cssText =
+          'position:absolute;left:-9999px;top:-9999px;visibility:hidden;' +
+          'display:inline-flex;align-items:center;gap:7px;' +
+          'white-space:nowrap;pointer-events:none;';
+        probe.className = 'support-btn';
+        probe.style.minWidth = '0';
+        probe.style.transform = 'none';
+        probe.style.boxShadow = 'none';
+
+        var max = 0;
+        phrases.forEach(function (item) {
+          probe.innerHTML = '<span>' + item.icon + '</span><span>' + item.text + '</span>';
+          document.body.appendChild(probe);
+          max = Math.max(max, probe.offsetWidth - 2);
+          probe.remove();
+        });
+
+        if (max > 0) btn.style.minWidth = max + 'px';
+      }
+
+      fitWidth();
+      window.addEventListener('resize', fitWidth);
+      window.addEventListener('load', fitWidth);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(fitWidth);
+      }
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
+      setInterval(function () {
+        if (animating) return;
+        animating = true;
+
+        icon.classList.add('is-fading');
+        label.classList.add('is-fading');
+
+        setTimeout(function () {
+          current = (current + 1) % phrases.length;
+          icon.textContent = phrases[current].icon;
+          label.textContent = phrases[current].text;
+          icon.classList.remove('is-fading');
+          label.classList.remove('is-fading');
+          animating = false;
+        }, FADE_MS);
+      }, INTERVAL_MS);
+    })();
+  </script>
+
+</body>
+</html>
+
