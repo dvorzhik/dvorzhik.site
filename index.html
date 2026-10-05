@@ -109,13 +109,34 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
+      padding: 7px 16px;
       border: 1px solid var(--card-border);
       border-radius: 999px;
       background: #ffffff;
+      font-family: inherit;
       font-size: 0.85rem;
       font-weight: 600;
       color: var(--text-muted);
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .hero .tag:hover,
+    .hero .tag:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent-hover);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .hero .tag.is-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .card.is-hidden {
+      display: none;
     }
 
     /* ---------- Заголовок секции ---------- */
@@ -250,26 +271,6 @@
       color: var(--accent-hover);
     }
 
-    /* Карточки архива: без перехода и без «подпрыгивания» */
-    .card.is-static {
-      cursor: default;
-    }
-
-    .card.is-static:hover {
-      transform: none;
-      box-shadow: none;
-      border-color: var(--card-border);
-    }
-
-    .card.is-static .card-link {
-      color: var(--text-muted);
-    }
-
-    .card.is-static .card-img {
-      filter: grayscale(0.5);
-      opacity: 0.85;
-    }
-
     /* ---------- Подвал ---------- */
     footer {
       border-top: 1px solid var(--card-border);
@@ -397,16 +398,15 @@
   <!-- ==================== ГЕРОЙ ==================== -->
   <header class="hero">
     <div class="container">
-      <h1>Дворжик <span class="accent">· программы</span></h1>
+      <h1>DVORZHIK <span class="accent">· PROGRAMS</span></h1>
       <p class="subtitle">
-        Веб-приложения, Telegram-боты и Android-приложения, которые я делаю сам
-        (и вместе с ИИ). Без рекламы, подписок и лишнего шума — просто полезные штуки.
+        Веб-приложения, мобильные приложения, Telegram-боты.<br />
+        Выберите, что интересно - и попробуйте прямо сейчас.
       </p>
-      <div class="tags">
-        <span class="tag">🎨 Приложения для детей</span>
-        <span class="tag">🤖 Нейросети</span>
-        <span class="tag">🌊 Погода и море</span>
-        <span class="tag">📖 Чтение без рекламы</span>
+      <div class="tags" id="filters">
+        <button type="button" class="tag" data-filter="web">Веб-приложение</button>
+        <button type="button" class="tag" data-filter="android">Android-приложение</button>
+        <button type="button" class="tag" data-filter="telegram">Telegram-bot</button>
       </div>
     </div>
   </header>
@@ -416,17 +416,15 @@
     <!-- ==================== ПРОГРАММЫ ==================== -->
     <div class="section-title">
       <h2>Программы</h2>
-      <p>Выберите, что интересно — и попробуйте прямо сейчас.</p>
     </div>
 
     <section class="grid">
 
-      <a class="card" href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer">
+      <a class="card" data-types="web" href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer">
         <img class="card-img" src="images/drawstory.jpg" alt="DrawStory — сказка по рисунку" loading="lazy" />
         <div class="card-body">
           <div class="card-badges">
             <span class="badge web">веб-приложение</span>
-            <span class="badge on">активен</span>
           </div>
           <h3>DrawStory</h3>
           <p>Сказка по рисунку: превращает детский набросок в персональную аудиосказку — вашим голосом и с мягкой музыкой.</p>
@@ -434,12 +432,11 @@
         </div>
       </a>
 
-      <a class="card" href="https://geminipoint.dvorzhik.site/" target="_blank" rel="noopener noreferrer">
+      <a class="card" data-types="web" href="https://geminipoint.dvorzhik.site/" target="_blank" rel="noopener noreferrer">
         <img class="card-img" src="images/geminipoint.jpg" alt="GeminiPoint" loading="lazy" />
         <div class="card-body">
           <div class="card-badges">
             <span class="badge web">веб-приложение</span>
-            <span class="badge on">активен</span>
           </div>
           <h3>GeminiPoint</h3>
           <p>Чат с нейросетью Gemini прямо в браузере: без установки, с открытым доступом даже там, где нужен VPN.</p>
@@ -447,7 +444,7 @@
         </div>
       </a>
 
-      <a class="card" href="https://www.dvorzhik.ru/personal-sky/" target="_blank" rel="noopener noreferrer">
+      <a class="card" data-types="android" href="https://www.dvorzhik.ru/personal-sky/" target="_blank" rel="noopener noreferrer">
         <img class="card-img" src="images/personal_sky.jpg" alt="Personal Sky — Личный небосвод" loading="lazy" />
         <div class="card-body">
           <div class="card-badges">
@@ -459,13 +456,12 @@
         </div>
       </a>
 
-      <a class="card" href="https://t.me/zenreader_bot" target="_blank" rel="noopener noreferrer">
+      <a class="card" data-types="web telegram" href="https://t.me/zenreader_bot" target="_blank" rel="noopener noreferrer">
         <img class="card-img" src="images/zenreader.jpg" alt="ZenReader" loading="lazy" />
         <div class="card-body">
           <div class="card-badges">
             <span class="badge web">веб-приложение</span>
             <span class="badge telegram">Telegram-bot</span>
-            <span class="badge on">активен</span>
           </div>
           <h3>ZenReader</h3>
           <p>Чистое чтение статей без рекламы, пейволов и трекеров: забирает текст с любого сайта и переводит в один клик.</p>
@@ -473,12 +469,11 @@
         </div>
       </a>
 
-      <a class="card" href="https://t.me/yamometer_bot" target="_blank" rel="noopener noreferrer">
+      <a class="card" data-types="telegram" href="https://t.me/yamometer_bot" target="_blank" rel="noopener noreferrer">
         <img class="card-img" src="images/yamometer.jpg" alt="Yamometer" loading="lazy" />
         <div class="card-body">
           <div class="card-badges">
             <span class="badge telegram">Telegram-bot</span>
-            <span class="badge on">активен</span>
           </div>
           <h3>Yamometer</h3>
           <p>Погода и состояние моря для пляжей Израиля: волны, температура, веб-камеры и утренняя сводка к кофе.</p>
@@ -486,13 +481,12 @@
         </div>
       </a>
 
-      <a class="card" href="https://vizborbot-j9kyvder.manus.space/" target="_blank" rel="noopener noreferrer">
+      <a class="card" data-types="web telegram" href="https://vizborbot-j9kyvder.manus.space/" target="_blank" rel="noopener noreferrer">
         <img class="card-img" src="images/vizbor.jpg" alt="Yuri Vizbor AI" loading="lazy" />
         <div class="card-body">
           <div class="card-badges">
             <span class="badge web">веб-приложение</span>
             <span class="badge telegram">Telegram-bot</span>
-            <span class="badge on">активен</span>
           </div>
           <h3>Yuri Vizbor AI</h3>
           <p>«Виртуальный Визбор»: диалог о горах, дружбе и песнях — строго через призму подлинного наследия барда.</p>
@@ -501,52 +495,6 @@
       </a>
 
     </section>
-
-    <!-- ==================== АРХИВ ==================== -->
-    <div class="section-title">
-      <h2>Ранние эксперименты</h2>
-      <p>Проекты, которые уже отключены, — но с них всё начиналось.</p>
-    </div>
-
-    <section class="grid">
-
-      <div class="card is-static">
-        <img class="card-img" src="images/sunsetbot.jpg" alt="SunsetBot" loading="lazy" />
-        <div class="card-body">
-          <div class="card-badges">
-            <span class="badge telegram">Telegram-bot</span>
-            <span class="badge off">отключен</span>
-          </div>
-          <h3>SunsetBot</h3>
-          <p>Гадание на русской поэтической классике: слово на входе — закат и хорошие стихи на выходе.</p>
-        </div>
-      </div>
-
-      <div class="card is-static">
-        <img class="card-img" src="images/chess_pgn_gif.jpg" alt="Chess PGN@GIF" loading="lazy" />
-        <div class="card-body">
-          <div class="card-badges">
-            <span class="badge telegram">Telegram-bot</span>
-            <span class="badge off">отключен</span>
-          </div>
-          <h3>Chess PGN@GIF</h3>
-          <p>Превращал текст шахматной партии в формате PGN в видео — с показом вариантов и анализа.</p>
-        </div>
-      </div>
-
-      <div class="card is-static">
-        <img class="card-img" src="images/currency.jpg" alt="Конвертер валют" loading="lazy" />
-        <div class="card-body">
-          <div class="card-badges">
-            <span class="badge android">Android-приложение</span>
-          </div>
-          <h3>Конвертер валют</h3>
-          <p>Первое мобильное приложение для тренировки: простой конвертер без рекламы и подписок.</p>
-        </div>
-      </div>
-
-    </section>
-
 
   </main>
 
@@ -567,11 +515,43 @@
       </div>
       <div class="footer-links">
         <a href="https://www.dvorzhik.ru/">Личный сайт</a>
-        <a href="https://www.dvorzhik.ru/vibecoding/">Все проекты</a>
         <a href="https://github.com/dvorzhik" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Плашки-фильтры: показывают только выбранные типы приложений.
+    // Если не выбрано ни одной плашки — показываются все программы.
+    (function () {
+      var filters = document.querySelectorAll('#filters .tag');
+      var cards = document.querySelectorAll('.grid .card');
+      var selected = {};
+
+      function apply() {
+        var any = Object.keys(selected).length > 0;
+        cards.forEach(function (card) {
+          var types = (card.getAttribute('data-types') || '').split(/\s+/);
+          var show = !any || types.some(function (t) { return selected[t]; });
+          card.classList.toggle('is-hidden', !show);
+        });
+      }
+
+      filters.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var f = btn.getAttribute('data-filter');
+          if (selected[f]) {
+            delete selected[f];
+            btn.classList.remove('is-active');
+          } else {
+            selected[f] = true;
+            btn.classList.add('is-active');
+          }
+          apply();
+        });
+      });
+    })();
+  </script>
 
   <script>
     // Кнопка поддержки: плавная смена иконки и надписи,
