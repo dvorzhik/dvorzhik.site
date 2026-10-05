@@ -255,6 +255,16 @@
       margin-bottom: 6px;
     }
 
+    .card h3 a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .card h3 a:hover {
+      color: var(--accent);
+    }
+
     .card p {
       color: var(--text-muted);
       font-size: 0.94rem;
@@ -462,14 +472,14 @@
     <section class="grid">
 
       <article class="card" data-types="web">
-        <a class="card-media" href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer" aria-label="Открыть DrawStory">
+        <a class="card-media" href="more.html?id=drawstory" aria-label="Узнать больше о DrawStory">
           <img class="card-img" src="images/drawstory.jpg" alt="DrawStory — сказка по рисунку" loading="lazy" />
         </a>
         <div class="card-body">
           <div class="card-badges">
-            <button type="button" class="badge web badge-filter" data-filter="web">веб-приложение</button>
+            <button type="button" class="badge web badge-filter" data-filter="web">Веб-приложение</button>
           </div>
-          <h3>DrawStory</h3>
+          <h3><a href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer">DrawStory</a></h3>
           <p>Сказка по рисунку: превращает детский набросок в персональную аудиосказку — вашим голосом и с мягкой музыкой.</p>
           <div class="card-actions">
             <a class="card-more" href="more.html?id=drawstory">Узнать больше</a>
@@ -478,14 +488,14 @@
       </article>
 
       <article class="card" data-types="web">
-        <a class="card-media" href="https://geminipoint.dvorzhik.site/" target="_blank" rel="noopener noreferrer" aria-label="Открыть GeminiPoint">
+        <a class="card-media" href="more.html?id=geminipoint" aria-label="Узнать больше о GeminiPoint">
           <img class="card-img" src="images/geminipoint.jpg" alt="GeminiPoint" loading="lazy" />
         </a>
         <div class="card-body">
           <div class="card-badges">
-            <button type="button" class="badge web badge-filter" data-filter="web">веб-приложение</button>
+            <button type="button" class="badge web badge-filter" data-filter="web">Веб-приложение</button>
           </div>
-          <h3>GeminiPoint</h3>
+          <h3><a href="https://geminipoint.dvorzhik.site/" target="_blank" rel="noopener noreferrer">GeminiPoint</a></h3>
           <p>Чат с нейросетью Gemini прямо в браузере: без установки, с открытым доступом даже там, где нужен VPN.</p>
           <div class="card-actions">
             <a class="card-more" href="more.html?id=geminipoint">Узнать больше</a>
@@ -494,14 +504,14 @@
       </article>
 
       <article class="card" data-types="android">
-        <a class="card-media" href="https://www.dvorzhik.ru/personal-sky/" target="_blank" rel="noopener noreferrer" aria-label="Открыть Personal Sky">
+        <a class="card-media" href="more.html?id=personal-sky" aria-label="Узнать больше о Personal Sky">
           <img class="card-img" src="images/personal_sky.jpg" alt="Personal Sky — Личный небосвод" loading="lazy" />
         </a>
         <div class="card-body">
           <div class="card-badges">
             <button type="button" class="badge android badge-filter" data-filter="android">Android-приложение</button>
           </div>
-          <h3>Personal Sky · Личный небосвод</h3>
+          <h3><a href="https://www.dvorzhik.ru/personal-sky/" target="_blank" rel="noopener noreferrer">Personal Sky · Личный небосвод</a></h3>
           <p>Трекер привычек без чувства вины: каждый выполненный день зажигает звезду и складывается в созвездие.</p>
           <div class="card-actions">
             <a class="card-more" href="more.html?id=personal-sky">Узнать больше</a>
@@ -510,15 +520,15 @@
       </article>
 
       <article class="card" data-types="web telegram">
-        <a class="card-media" href="https://t.me/zenreader_bot" target="_blank" rel="noopener noreferrer" aria-label="Открыть ZenReader">
+        <a class="card-media" href="more.html?id=zenreader" aria-label="Узнать больше о ZenReader">
           <img class="card-img" src="images/zenreader.jpg" alt="ZenReader" loading="lazy" />
         </a>
         <div class="card-body">
           <div class="card-badges">
-            <button type="button" class="badge web badge-filter" data-filter="web">веб-приложение</button>
+            <button type="button" class="badge web badge-filter" data-filter="web">Веб-приложение</button>
             <button type="button" class="badge telegram badge-filter" data-filter="telegram">Telegram-bot</button>
           </div>
-          <h3>ZenReader</h3>
+          <h3><a href="https://t.me/zenreader_bot" target="_blank" rel="noopener noreferrer">ZenReader</a></h3>
           <p>Чистое чтение статей без рекламы, пейволов и трекеров: забирает текст с любого сайта и переводит в один клик.</p>
           <div class="card-actions">
             <a class="card-more" href="more.html?id=zenreader">Узнать больше</a>
@@ -527,14 +537,14 @@
       </article>
 
       <article class="card" data-types="telegram">
-        <a class="card-media" href="https://t.me/yamometer_bot" target="_blank" rel="noopener noreferrer" aria-label="Открыть Yamometer">
+        <a class="card-media" href="more.html?id=yamometer" aria-label="Узнать больше о Yamometer">
           <img class="card-img" src="images/yamometer.jpg" alt="Yamometer" loading="lazy" />
         </a>
         <div class="card-body">
           <div class="card-badges">
             <button type="button" class="badge telegram badge-filter" data-filter="telegram">Telegram-bot</button>
           </div>
-          <h3>Yamometer</h3>
+          <h3><a href="https://t.me/yamometer_bot" target="_blank" rel="noopener noreferrer">Yamometer</a></h3>
           <p>Погода и состояние моря для пляжей Израиля: волны, температура, веб-камеры и утренняя сводка к кофе.</p>
           <div class="card-actions">
             <a class="card-more" href="more.html?id=yamometer">Узнать больше</a>
@@ -543,15 +553,15 @@
       </article>
 
       <article class="card" data-types="web telegram">
-        <a class="card-media" href="https://vizborbot-j9kyvder.manus.space/" target="_blank" rel="noopener noreferrer" aria-label="Открыть Yuri Vizbor AI">
+        <a class="card-media" href="more.html?id=vizbor" aria-label="Узнать больше о Yuri Vizbor AI">
           <img class="card-img" src="images/vizbor.jpg" alt="Yuri Vizbor AI" loading="lazy" />
         </a>
         <div class="card-body">
           <div class="card-badges">
-            <button type="button" class="badge web badge-filter" data-filter="web">веб-приложение</button>
+            <button type="button" class="badge web badge-filter" data-filter="web">Веб-приложение</button>
             <button type="button" class="badge telegram badge-filter" data-filter="telegram">Telegram-bot</button>
           </div>
-          <h3>Yuri Vizbor AI</h3>
+          <h3><a href="https://vizborbot-j9kyvder.manus.space/" target="_blank" rel="noopener noreferrer">Yuri Vizbor AI</a></h3>
           <p>«Виртуальный Визбор»: диалог о горах, дружбе и песнях — строго через призму подлинного наследия барда.</p>
           <div class="card-actions">
             <a class="card-more" href="more.html?id=vizbor">Узнать больше</a>
