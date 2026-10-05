@@ -71,46 +71,20 @@
     }
 
     /* ---------- Шапка / герой ---------- */
+    /* Фон шапки — три слоя (снизу вверх): подложка-«мастерская»
+       images/programs_fon.jpg, светлая вуаль поверх неё (приглушает картинку,
+       чтобы заголовок и текст оставались контрастными) и тёплое свечение
+       акцентом сверху. Картинка подключена только здесь, тега в HTML нет. */
     .hero {
       position: relative;
       padding: 46px 0 38px;
       text-align: center;
       background:
-        radial-gradient(1100px 380px at 50% -160px, var(--accent-soft) 0%, rgba(254, 243, 199, 0) 70%),
-        linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        radial-gradient(900px 300px at 50% -120px, rgba(202, 138, 4, 0.16) 0%, rgba(202, 138, 4, 0) 70%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.64) 0%, rgba(248, 250, 252, 0.86) 100%),
+        url('images/programs_fon.jpg') center center / cover no-repeat,
+        #f8fafc;
       border-bottom: 1px solid var(--card-border);
-    }
-
-    .hero-brand {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
-
-    .hero-text {
-      text-align: left;
-      min-width: 0;
-    }
-
-    .hero .hero-text .subtitle {
-      margin: 10px 0 0;
-      max-width: 560px;
-    }
-
-    /* Высоту и ширину логотипа выравнивает скрипт по высоте блока
-       .hero-text (заголовок + подзаголовок), чтобы верх логотипа совпадал
-       с верхом заголовка, а низ — с низом подзаголовка. */
-    .hero-logo {
-      display: block;
-      width: 122px;
-      height: 122px;
-      flex: 0 0 auto;
-      border-radius: 28px;
-      object-fit: cover;
-      border: 1px solid var(--card-border);
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.16);
     }
 
     .hero h1 {
@@ -224,7 +198,7 @@
 
     .card-img {
       width: 100%;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 11 / 6;
       object-fit: cover;
       background: #ffffff;
       border-bottom: 1px solid var(--card-border);
@@ -249,16 +223,15 @@
     .card-badges {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 3px;
       margin-bottom: 10px;
     }
 
     .badge {
       display: inline-block;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.3px;
-      padding: 3px 10px;
+      padding: 3px 5px;
       border-radius: 999px;
       line-height: 1.5;
       white-space: nowrap;
@@ -280,6 +253,12 @@
       color: #15803d;
       background: #dcfce7;
       border: 1px solid #86efac;
+    }
+
+    .badge.game {
+      color: #6d28d9;
+      background: #ede9fe;
+      border: 1px solid #c4b5fd;
     }
 
     .badge.on {
@@ -457,26 +436,8 @@
       .hero {
         padding: 34px 0 28px;
       }
-      .hero-logo {
-        width: 108px;
-        height: 108px;
-        border-radius: 24px;
-      }
       .hero h1 {
         font-size: 2.2rem;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .hero-brand {
-        flex-direction: column;
-        gap: 16px;
-      }
-      .hero-text {
-        text-align: center;
-      }
-      .hero .hero-text .subtitle {
-        margin: 10px auto 0;
       }
     }
 
@@ -517,21 +478,17 @@
   <header class="hero">
     <div class="container">
 
-      <div class="hero-brand">
-        <img class="hero-logo" src="images/dvorzhik_programs.jpg" alt="Dvorzhik Programs — логотип" width="122" height="122" />
-        <div class="hero-text">
-          <h1>DVORZHIK <span class="accent">· PROGRAMS</span></h1>
-          <p class="subtitle">
-            Веб-приложения, мобильные приложения, Telegram-боты.<br />
-            Выберите, что интересно - и попробуйте прямо сейчас.
-          </p>
-        </div>
-      </div>
+      <h1>DVORZHIK <span class="accent">· PROGRAMS</span></h1>
+      <p class="subtitle">
+        Веб-приложения, мобильные приложения, Telegram-боты, Игры.<br />
+        Выберите, что интересно - и попробуйте прямо сейчас.
+      </p>
 
       <div class="tags" id="filters">
         <button type="button" class="tag" data-filter="web">Веб-приложение</button>
         <button type="button" class="tag" data-filter="android">Android-приложение</button>
         <button type="button" class="tag" data-filter="telegram">Telegram-bot</button>
+        <button type="button" class="tag" data-filter="game">Игры</button>
       </div>
     </div>
   </header>
@@ -540,6 +497,24 @@
 
     <!-- ==================== ПРОГРАММЫ ==================== -->
     <section class="grid">
+
+      <article class="card" data-types="game web telegram">
+        <a class="card-media" href="more.html?id=seablitz" aria-label="Узнать больше о SeaBlitz">
+          <img class="card-img" src="images/seablitz_app.jpg" alt="SeaBlitz — морской бой на поле 5×5" loading="lazy" />
+        </a>
+        <div class="card-body">
+          <div class="card-badges">
+            <button type="button" class="badge game badge-filter" data-filter="game">Игра</button>
+            <button type="button" class="badge web badge-filter" data-filter="web">Веб-приложение</button>
+            <button type="button" class="badge telegram badge-filter" data-filter="telegram">Telegram-bot</button>
+          </div>
+          <h3><a href="https://seablitz.duckdns.org/" target="_blank" rel="noopener noreferrer">SeaBlitz</a></h3>
+          <p>SeaBlitz — молниеносный морской бой на компактном поле 5×5 с одновременными залпами без ожидания хода.</p>
+          <div class="card-actions">
+            <a class="card-more" href="more.html?id=seablitz">Узнать больше</a>
+          </div>
+        </div>
+      </article>
 
       <article class="card" data-types="web">
         <a class="card-media" href="more.html?id=drawstory" aria-label="Узнать больше о DrawStory">
@@ -575,13 +550,13 @@
 
       <article class="card" data-types="android">
         <a class="card-media" href="more.html?id=personal-sky" aria-label="Узнать больше о Personal Sky">
-          <img class="card-img" src="images/personal_sky.jpg" alt="Personal Sky — Личный небосвод" loading="lazy" />
+          <img class="card-img" src="images/personal_sky.jpg" alt="Personal Sky" loading="lazy" />
         </a>
         <div class="card-body">
           <div class="card-badges">
             <button type="button" class="badge android badge-filter" data-filter="android">Android-приложение</button>
           </div>
-          <h3><a href="https://www.dvorzhik.ru/personal-sky/" target="_blank" rel="noopener noreferrer">Personal Sky · Личный небосвод</a></h3>
+          <h3><a href="https://www.dvorzhik.ru/personal-sky/" target="_blank" rel="noopener noreferrer">Personal Sky</a></h3>
           <p>Трекер привычек без чувства вины: каждый выполненный день зажигает звезду и складывается в созвездие.</p>
           <div class="card-actions">
             <a class="card-more" href="more.html?id=personal-sky">Узнать больше</a>
@@ -591,7 +566,7 @@
 
       <article class="card" data-types="web telegram">
         <a class="card-media" href="more.html?id=zenreader" aria-label="Узнать больше о ZenRead">
-          <img class="card-img is-logo" src="images/zenreader.png" alt="ZenRead" loading="lazy" />
+          <img class="card-img" src="images/zenread.jpg" alt="ZenRead" loading="lazy" />
         </a>
         <div class="card-body">
           <div class="card-badges">
@@ -602,22 +577,6 @@
           <p>Чистое чтение статей без рекламы, пейволов и трекеров: забирает текст с любого сайта и переводит в один клик.</p>
           <div class="card-actions">
             <a class="card-more" href="more.html?id=zenreader">Узнать больше</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-types="telegram">
-        <a class="card-media" href="more.html?id=yamometer" aria-label="Узнать больше о Yamometer">
-          <img class="card-img" src="images/yamometer.jpg" alt="Yamometer" loading="lazy" />
-        </a>
-        <div class="card-body">
-          <div class="card-badges">
-            <button type="button" class="badge telegram badge-filter" data-filter="telegram">Telegram-bot</button>
-          </div>
-          <h3><a href="https://t.me/yamometer_bot" target="_blank" rel="noopener noreferrer">Yamometer</a></h3>
-          <p>Погода и состояние моря для пляжей Израиля: волны, температура, веб-камеры и утренняя сводка к кофе.</p>
-          <div class="card-actions">
-            <a class="card-more" href="more.html?id=yamometer">Узнать больше</a>
           </div>
         </div>
       </article>
@@ -635,6 +594,22 @@
           <p>«Виртуальный Визбор»: диалог о горах, дружбе и песнях — строго через призму подлинного наследия барда.</p>
           <div class="card-actions">
             <a class="card-more" href="more.html?id=vizbor">Узнать больше</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-types="telegram">
+        <a class="card-media" href="more.html?id=yamometer" aria-label="Узнать больше о Yamometer">
+          <img class="card-img" src="images/yamometer.jpg" alt="Yamometer" loading="lazy" />
+        </a>
+        <div class="card-body">
+          <div class="card-badges">
+            <button type="button" class="badge telegram badge-filter" data-filter="telegram">Telegram-bot</button>
+          </div>
+          <h3><a href="https://t.me/yamometer_bot" target="_blank" rel="noopener noreferrer">Yamometer</a></h3>
+          <p>Погода и состояние моря для пляжей Израиля: волны, температура, веб-камеры и утренняя сводка к кофе.</p>
+          <div class="card-actions">
+            <a class="card-more" href="more.html?id=yamometer">Узнать больше</a>
           </div>
         </div>
       </article>
@@ -664,36 +639,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    // Логотип в шапке: по высоте ровняем на блок с заголовком и подзаголовком,
-    // чтобы верх логотипа совпал с верхом заголовка, а низ — с низом текста.
-    (function () {
-      var text = document.querySelector('.hero-text');
-      var logo = document.querySelector('.hero-logo');
-      if (!text || !logo) return;
-
-      function fit() {
-        if (window.innerWidth > 700) {
-          var h = Math.round(text.getBoundingClientRect().height);
-          if (h > 0) {
-            logo.style.width = h + 'px';
-            logo.style.height = h + 'px';
-          }
-        } else {
-          logo.style.width = '';
-          logo.style.height = '';
-        }
-      }
-
-      fit();
-      window.addEventListener('resize', fit);
-      window.addEventListener('load', fit);
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(fit);
-      }
-    })();
-  </script>
 
   <script>
     // Плашки-фильтры (в шапке и внутри карточек): показывают только выбранные
