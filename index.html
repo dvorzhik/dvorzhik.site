@@ -231,6 +231,14 @@
       display: block;
     }
 
+    /* Картинка-логотип: круг на прозрачном фоне — вписываем целиком,
+       без белой подложки и разделительной линии. */
+    .card-img.is-logo {
+      object-fit: contain;
+      background: transparent;
+      border-bottom: none;
+    }
+
     .card-body {
       display: flex;
       flex-direction: column;
@@ -583,7 +591,7 @@
 
       <article class="card" data-types="web telegram">
         <a class="card-media" href="more.html?id=zenreader" aria-label="Узнать больше о ZenRead">
-          <img class="card-img" src="images/zenreader.jpg" alt="ZenRead" loading="lazy" />
+          <img class="card-img is-logo" src="images/zenreader.png" alt="ZenRead" loading="lazy" />
         </a>
         <div class="card-body">
           <div class="card-badges">
