@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Дворжик — программы и сервисы</title>
-  <link rel="icon" type="image/png" sizes="160x160" href="images/favicon.png" />
-  <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/favicon.png" />
+  <link rel="shortcut icon" href="images/favicon.png" />
   <meta name="description" content="Программы и сервисы Александра Дворжицкого (Дворжика): DrawStory, GeminiPoint, Personal Sky, ZenRead, Yamometer, Yuri Vizbor AI и другие. Веб-приложения, Telegram-боты и Android-приложения." />
   <meta name="theme-color" content="#0f172a" />
 
@@ -14,7 +16,10 @@
   <meta property="og:title" content="Дворжик — программы и сервисы" />
   <meta property="og:description" content="Веб-приложения, Telegram-боты и Android-приложения: DrawStory, GeminiPoint, Personal Sky, ZenRead, Yamometer и другие." />
   <meta property="og:url" content="https://www.dvorzhik.site/" />
-  <meta property="og:image" content="https://www.dvorzhik.site/images/drawstory.jpg" />
+  <meta property="og:image" content="https://www.dvorzhik.site/images/dvorzhik_programs.jpg" />
+  <meta property="og:image:width" content="640" />
+  <meta property="og:image:height" content="640" />
+  <meta property="og:image:alt" content="Dvorzhik Programs" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -76,12 +81,30 @@
       border-bottom: 1px solid var(--card-border);
     }
 
+    .hero-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      text-align: left;
+      min-width: 0;
+    }
+
+    .hero .hero-text .subtitle {
+      margin: 10px 0 0;
+      max-width: 560px;
+    }
+
     .hero-logo {
       display: block;
-      width: 128px;
-      height: 128px;
-      margin: 0 auto 20px;
-      border-radius: 28px;
+      width: 104px;
+      height: 104px;
+      flex: 0 0 auto;
+      border-radius: 24px;
       object-fit: cover;
       border: 1px solid var(--card-border);
       box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15);
@@ -424,13 +447,25 @@
         padding: 34px 0 28px;
       }
       .hero-logo {
-        width: 104px;
-        height: 104px;
-        border-radius: 22px;
-        margin-bottom: 16px;
+        width: 88px;
+        height: 88px;
+        border-radius: 20px;
       }
       .hero h1 {
         font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero-brand {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .hero-text {
+        text-align: center;
+      }
+      .hero .hero-text .subtitle {
+        margin: 10px auto 0;
       }
     }
 
@@ -470,12 +505,18 @@
   <!-- ==================== ГЕРОЙ ==================== -->
   <header class="hero">
     <div class="container">
-      <img class="hero-logo" src="images/dvorzhik_programs.jpg" alt="Dvorzhik Programs — логотип" width="128" height="128" />
-      <h1>DVORZHIK <span class="accent">· PROGRAMS</span></h1>
-      <p class="subtitle">
-        Веб-приложения, мобильные приложения, Telegram-боты.<br />
-        Выберите, что интересно - и попробуйте прямо сейчас.
-      </p>
+
+      <div class="hero-brand">
+        <img class="hero-logo" src="images/dvorzhik_programs.jpg" alt="Dvorzhik Programs — логотип" width="104" height="104" />
+        <div class="hero-text">
+          <h1>DVORZHIK <span class="accent">· PROGRAMS</span></h1>
+          <p class="subtitle">
+            Веб-приложения, мобильные приложения, Telegram-боты.<br />
+            Выберите, что интересно - и попробуйте прямо сейчас.
+          </p>
+        </div>
+      </div>
+
       <div class="tags" id="filters">
         <button type="button" class="tag" data-filter="web">Веб-приложение</button>
         <button type="button" class="tag" data-filter="android">Android-приложение</button>
