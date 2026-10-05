@@ -99,15 +99,18 @@
       max-width: 560px;
     }
 
+    /* Высоту и ширину логотипа выравнивает скрипт по высоте блока
+       .hero-text (заголовок + подзаголовок), чтобы верх логотипа совпадал
+       с верхом заголовка, а низ — с низом подзаголовка. */
     .hero-logo {
       display: block;
-      width: 150px;
-      height: 150px;
+      width: 122px;
+      height: 122px;
       flex: 0 0 auto;
-      border-radius: 34px;
+      border-radius: 28px;
       object-fit: cover;
       border: 1px solid var(--card-border);
-      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.18);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.16);
     }
 
     .hero h1 {
@@ -447,9 +450,9 @@
         padding: 34px 0 28px;
       }
       .hero-logo {
-        width: 112px;
-        height: 112px;
-        border-radius: 26px;
+        width: 108px;
+        height: 108px;
+        border-radius: 24px;
       }
       .hero h1 {
         font-size: 2.2rem;
@@ -507,7 +510,7 @@
     <div class="container">
 
       <div class="hero-brand">
-        <img class="hero-logo" src="images/dvorzhik_programs.jpg" alt="Dvorzhik Programs — логотип" width="150" height="150" />
+        <img class="hero-logo" src="images/dvorzhik_programs.jpg" alt="Dvorzhik Programs — логотип" width="122" height="122" />
         <div class="hero-text">
           <h1>DVORZHIK <span class="accent">· PROGRAMS</span></h1>
           <p class="subtitle">
@@ -653,6 +656,36 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Логотип в шапке: по высоте ровняем на блок с заголовком и подзаголовком,
+    // чтобы верх логотипа совпал с верхом заголовка, а низ — с низом текста.
+    (function () {
+      var text = document.querySelector('.hero-text');
+      var logo = document.querySelector('.hero-logo');
+      if (!text || !logo) return;
+
+      function fit() {
+        if (window.innerWidth > 700) {
+          var h = Math.round(text.getBoundingClientRect().height);
+          if (h > 0) {
+            logo.style.width = h + 'px';
+            logo.style.height = h + 'px';
+          }
+        } else {
+          logo.style.width = '';
+          logo.style.height = '';
+        }
+      }
+
+      fit();
+      window.addEventListener('resize', fit);
+      window.addEventListener('load', fit);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(fit);
+      }
+    })();
+  </script>
 
   <script>
     // Плашки-фильтры (в шапке и внутри карточек): показывают только выбранные
