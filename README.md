@@ -38,7 +38,8 @@ scripts/        # вспомогательные скрипты подготов
 ## Стандарт карточки «Узнать больше»
 
 Подробная страница программы (`more.html?id=…`) собирается по единому шаблону —
-эталоны — карточки SeaBlitz, DrawStory, GeminiPoint, ZenRead, Yamometer и Yuri Vizbor AI
+эталоны — карточки SeaBlitz, DrawStory, GeminiPoint, ZenRead, Yamometer, Yuri Vizbor AI
+и Personal Sky
 (`<article id="program-rich-<id>">`).
 Программа с флагом `rich: true` в объекте `PROGRAMS` показывает свою подробную
 карточку `#program-rich-<id>` вместо заглушки `#program-stub`.
