@@ -360,21 +360,26 @@
       font-size: 0.9rem;
     }
 
+    /* Подвал: ссылки слева, копирайт строго по центру, кнопка поддержки
+       справа. Боковые колонки равны (1fr), поэтому центр не съезжает. */
     .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: center;
       gap: 10px 16px;
     }
 
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-self: start;
       gap: 6px 18px;
-      margin-top: 14px;
       font-size: 0.88rem;
+    }
+
+    .footer-copy {
+      justify-self: center;
+      text-align: center;
     }
 
     /* ---------- Кнопка поддержки ---------- */
@@ -431,6 +436,11 @@
       outline-offset: 3px;
     }
 
+    /* В подвале кнопка поддержки прижата к правому краю */
+    .footer-inner .support-btn {
+      justify-self: end;
+    }
+
     /* ---------- Адаптивность ---------- */
     @media (max-width: 820px) {
       .hero {
@@ -450,6 +460,18 @@
       }
       .hero .subtitle {
         font-size: 1rem;
+      }
+      /* На узких экранах подвал складывается в одну колонку по центру */
+      .footer-inner {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .footer-links,
+      .footer-copy {
+        justify-self: center;
+      }
+      .footer-inner .support-btn {
+        justify-self: center;
       }
     }
 
@@ -620,23 +642,21 @@
 
   <!-- ==================== ПОДВАЛ ==================== -->
   <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div><a href="https://t.me/dvorzhik" target="_blank" rel="noopener noreferrer">© Aleksandr Dvorzhitckii</a></div>
-        <a class="support-btn"
-           id="supportBtn"
-           href="https://web.tribute.tg/d/QPI"
-           target="_blank"
-           rel="noopener noreferrer"
-           title="Поддержать проект">
-          <span class="support-btn__icon" id="supportIcon" aria-hidden="true">❤️</span>
-          <span class="support-btn__label" id="supportLabel">Сказать спасибо</span>
-        </a>
-      </div>
+    <div class="container footer-inner">
       <div class="footer-links">
         <a href="https://www.dvorzhik.ru/">Личный сайт</a>
         <a href="https://github.com/dvorzhik" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
+      <a class="footer-copy" href="https://t.me/dvorzhik" target="_blank" rel="noopener noreferrer">© Aleksandr Dvorzhitckii</a>
+      <a class="support-btn"
+         id="supportBtn"
+         href="https://web.tribute.tg/d/QPI"
+         target="_blank"
+         rel="noopener noreferrer"
+         title="Поддержать проект">
+        <span class="support-btn__icon" id="supportIcon" aria-hidden="true">❤️</span>
+        <span class="support-btn__label" id="supportLabel">Сказать спасибо</span>
+      </a>
     </div>
   </footer>
 
