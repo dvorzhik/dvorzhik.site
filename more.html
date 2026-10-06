@@ -19,6 +19,7 @@
       --accent-hover: #a16207;
       --accent-soft: #fef3c7;
       --accent-border: #fcd34d;
+      --accent-shadow: rgba(202, 138, 4, 0.18);
       --text-main: #0f172a;
       --text-muted: #475569;
     }
@@ -298,12 +299,62 @@
       transform: translateY(-2px);
       outline: none;
     }
+
+    /* Кнопка поддержки — та же, что на главной странице */
+    .support-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 7px 16px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--card-bg);
+      color: var(--accent-hover);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+      /* Ширина не меняется при смене фразы: значение считает скрипт,
+         а 0.85rem — запас до загрузки Inter */
+      min-width: 12.5em;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .support-btn__icon,
+    .support-btn__label {
+      display: block;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .support-btn__icon.is-fading,
+    .support-btn__label.is-fading {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    .support-btn:hover,
+    .support-btn:focus-visible {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px var(--accent-shadow);
+    }
+    .support-btn:active { transform: translateY(0); }
+    .support-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    /* В подвале кнопка поддержки прижата к правому краю */
+    .footer-inner .support-btn { justify-self: end; }
+    @media (prefers-reduced-motion: reduce) {
+      .support-btn { transition: none; }
+    }
     @media (max-width: 480px) {
       .container { padding: 0 14px; }
       .detail { padding: 26px 20px; }
       h1 { font-size: 1.5rem; }
       .footer-inner { grid-template-columns: 1fr; justify-items: center; }
       .footer-btn, .footer-copy { justify-self: center; }
+      .footer-inner .support-btn { justify-self: center; }
       .lightbox { gap: 8px; padding: 12px; }
       .lightbox__nav { width: 38px; height: 38px; font-size: 1.5rem; }
       .lightbox__close { width: 38px; height: 38px; font-size: 1.4rem; }
@@ -408,6 +459,15 @@
     <div class="container footer-inner">
       <a class="footer-btn" href="index.html">← К программам</a>
       <a class="footer-copy" href="https://t.me/dvorzhik" target="_blank" rel="noopener noreferrer">© Aleksandr Dvorzhitckii</a>
+      <a class="support-btn"
+         id="supportBtn"
+         href="https://web.tribute.tg/d/QPI"
+         target="_blank"
+         rel="noopener noreferrer"
+         title="Поддержать проект">
+        <span class="support-btn__icon" id="supportIcon" aria-hidden="true">❤️</span>
+        <span class="support-btn__label" id="supportLabel">Сказать спасибо</span>
+      </a>
     </div>
   </footer>
 
@@ -543,6 +603,77 @@
         else if (e.key === 'ArrowLeft') { show(current - 1); }
         else if (e.key === 'ArrowRight') { show(current + 1); }
       });
+    })();
+  </script>
+
+  <script>
+    // Кнопка поддержки: плавная смена иконки и надписи,
+    // а также фиксированная ширина кнопки по самой широкой фразе.
+    (function () {
+      var btn = document.getElementById('supportBtn');
+      var icon = document.getElementById('supportIcon');
+      var label = document.getElementById('supportLabel');
+      if (!btn || !icon || !label) return;
+
+      var phrases = [
+        { icon: '❤️', text: 'Сказать спасибо' },
+        { icon: '☕', text: 'Угостить кофе' }
+      ];
+      var FADE_MS = 300;
+      var INTERVAL_MS = 3000;
+      var current = 0;
+      var animating = false;
+
+      // Ширина кнопки = самая широкая из фраз, чтобы при смене текста
+      // кнопка не «дёргалась». Считаем по невидимым слепкам.
+      function fitWidth() {
+        var probe = document.createElement('span');
+        probe.style.cssText =
+          'position:absolute;left:-9999px;top:-9999px;visibility:hidden;' +
+          'display:inline-flex;align-items:center;gap:7px;' +
+          'white-space:nowrap;pointer-events:none;';
+        probe.className = 'support-btn';
+        probe.style.minWidth = '0';
+        probe.style.transform = 'none';
+        probe.style.boxShadow = 'none';
+
+        var max = 0;
+        phrases.forEach(function (item) {
+          probe.innerHTML = '<span>' + item.icon + '</span><span>' + item.text + '</span>';
+          document.body.appendChild(probe);
+          max = Math.max(max, probe.offsetWidth - 2);
+          probe.remove();
+        });
+
+        if (max > 0) btn.style.minWidth = max + 'px';
+      }
+
+      fitWidth();
+      window.addEventListener('resize', fitWidth);
+      window.addEventListener('load', fitWidth);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(fitWidth);
+      }
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
+      setInterval(function () {
+        if (animating) return;
+        animating = true;
+
+        icon.classList.add('is-fading');
+        label.classList.add('is-fading');
+
+        setTimeout(function () {
+          current = (current + 1) % phrases.length;
+          icon.textContent = phrases[current].icon;
+          label.textContent = phrases[current].text;
+          icon.classList.remove('is-fading');
+          label.classList.remove('is-fading');
+          animating = false;
+        }, FADE_MS);
+      }, INTERVAL_MS);
     })();
   </script>
 
