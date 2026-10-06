@@ -85,24 +85,24 @@ ZenRead: там лежит готовая промо-картинка 1024×559,
 Любой исходник приводится к 11:6 скриптом `scripts/make_card_image.py`: он
 вписывает картинку в холст целиком (по длинной стороне) и доливает свободные
 полосы — содержимое не режется, в отличие от центрального кадрирования. Исходники
-лежат в соседнем репозитории `vibecoding/images/`.
+лежат в соседнем репозитории `sunset/images/`.
 
 ```powershell
 # промо-картинка GeminiPoint: исходник уже 11:6 — полос не будет
-python scripts/make_card_image.py --source ..\vibecoding\images\geminipoint_art.jpg --output images\geminipoint.jpg
+python scripts/make_card_image.py --source ..\sunset\images\geminipoint_art.jpg --output images\geminipoint.jpg
 # страница Визбора на кремовом фоне: полосы по бокам берут цвет верхнего края
-python scripts/make_card_image.py --source ..\vibecoding\images\vizbor.png --output images\vizbor.jpg --fill top
+python scripts/make_card_image.py --source ..\sunset\images\vizbor.png --output images\vizbor.jpg --fill top
 # картинка Yamometer уже 11:6 — полос не будет вовсе
-python scripts/make_card_image.py --source ..\vibecoding\images\Yamometer.jpg --output images\yamometer.jpg
+python scripts/make_card_image.py --source ..\sunset\images\Yamometer.jpg --output images\yamometer.jpg
 # SeaBlitz: полосы по бокам — бумажный фон страницы
-python scripts/make_card_image.py --source ..\vibecoding\images\SeaBlitz.jpg --output images\seablitz_app.jpg --fill top
+python scripts/make_card_image.py --source ..\sunset\images\SeaBlitz.jpg --output images\seablitz_app.jpg --fill top
 # Personal Sky: иллюстрация 1024×572 — полосы по бокам, отражение неба без шва
-python scripts/make_card_image.py --source ..\vibecoding\images\personal_sky_art.jpg --output images\personal_sky.jpg --fill mirror
+python scripts/make_card_image.py --source ..\sunset\images\personal_sky_art.jpg --output images\personal_sky.jpg --fill mirror
 # DrawStory: иллюстрация уже в пропорции 11:6 — просто масштабируется до холста
-python scripts/make_card_image.py --source ..\vibecoding\images\drawstory_art.jpg --output images\drawstory.jpg
+python scripts/make_card_image.py --source ..\sunset\images\drawstory_art.jpg --output images\drawstory.jpg
 # ZenRead: готовая промо-картинка уже 11:6 (1024×559) — кладётся как есть,
 # без прогонов через скрипт: апскейл до 1100×600 добавлял артефакт
-# Copy-Item ..\vibecoding\images\zenread.jpg images\zenread.jpg
+# Copy-Item ..\sunset\images\zenread.jpg images\zenread.jpg
 ```
 
 Ключи: `--fill edges` (по умолчанию — средний цвет соответствующего края),

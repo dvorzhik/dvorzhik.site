@@ -11,9 +11,9 @@ GeminiPoint, кремовый фон страницы Визбора, бумаж
 
 Запуск:
     python scripts/make_card_image.py --source <исходник> --output <куда сохранить>
-    python scripts/make_card_image.py --source ../vibecoding/images/GP.png \
+    python scripts/make_card_image.py --source ../sunset/images/GP.png \
         --output images/geminipoint.jpg --fill mirror
-    python scripts/make_card_image.py --source ../vibecoding/images/GP.png --diagnose
+    python scripts/make_card_image.py --source ../sunset/images/GP.png --diagnose
 
 Ключи:
     --fill edges  (по умолчанию) каждая полоса берёт цвет своего края исходника;
