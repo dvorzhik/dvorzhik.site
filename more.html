@@ -126,6 +126,10 @@
     .detail-rich ul { margin: 12px 0; padding-left: 22px; }
     .detail-rich li { margin: 12px 0; }
     .detail-rich li strong { color: var(--text-main); }
+    /* Ссылки на примеры готовых сказок */
+    .story-examples { list-style: none; padding-left: 0; }
+    .story-examples li { margin: 8px 0; }
+    .story-examples a { font-weight: 600; }
     .detail-rich code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 0.88em;
@@ -383,7 +387,7 @@
       <a class="btn-primary" id="program-open" href="index.html">Открыть →</a>
     </article>
 
-    <article class="detail detail-rich" id="program-rich" hidden>
+    <article class="detail detail-rich" id="program-rich-seablitz" hidden>
       <a class="cover" href="https://seablitz.duckdns.org/" target="_blank" rel="noopener noreferrer" aria-label="Открыть SeaBlitz">
         <img src="images/seablitz_app.jpg" alt="SeaBlitz — морской бой на поле 5×5" />
       </a>
@@ -453,6 +457,107 @@
       </div>
 
     </article>
+
+    <article class="detail detail-rich" id="program-rich-drawstory" hidden>
+      <a class="cover" href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer" aria-label="Открыть DrawStory">
+        <img src="images/drawstory.jpg" alt="DrawStory — сказка по рисунку" />
+      </a>
+
+      <div>
+        <span class="badge">Веб-приложение</span>
+      </div>
+      <div class="title-row">
+        <h1>DrawStory</h1>
+        <div class="title-actions">
+          <a class="btn-ghost" href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer">Открыть DrawStory →</a>
+        </div>
+      </div>
+
+      <p class="lead">«Сказка по рисунку»: как спасти вечер усталого родителя и не обидеть синего дракона.</p>
+
+      <p>Каждый родитель знаком с ситуацией: вечер, 21:00, запас сил равен заряду батареи на 2%, а чадо приносит альбомный лист с чем-то фиолетовым, шестиногим и подозрительно зубастым.</p>
+
+      <div class="callout">
+        <p>— «Это Бублик, он добрый, расскажи про него сказку на ночь!»</p>
+      </div>
+
+      <p>В этот момент мозг взрослого судорожно пытается связать законы физики, Бублика и желание просто доползти до подушки. Именно для таких спасательных операций и был создан сервис DrawStory.</p>
+
+      <h2>Что это такое?</h2>
+      <p>DrawStory — это веб-сервис, который берёт детские рисунки любого уровня экспрессионизма (от шедевров будущих художников до классических «палка-палка-огуречик») и за 1–2 минуты превращает их в готовую персональную аудиосказку со звуковым сопровождением и книжной обложкой.</p>
+
+      <h2>Как устроен процесс: пошаговая магия</h2>
+      <ul>
+        <li><strong>Фотографируем шедевр 📸</strong> — загружаете фото или скан наброска (подходят JPG, PNG, WEBP). Мультимодальная нейросеть бережно изучает лист: она видит не просто пятна гуаши, а подмечает характерные ушки, форму хвоста, кривой бантик на шее и даже подозрительное облачко на заднем плане. Если на рисунке изображён концептуальный авангард, в котором даже автор путается, родитель может черкнуть короткую подсказку — ИИ всё учтёт.</li>
+        <li><strong>Задаём параметры героя 👧👦</strong> — указываете имя и возраст слушателя, а также тип истории: сказка на ночь, спокойная история перед дневным сном или приключение. Под возраст подстраивается словарный запас, сложность сюжета и длина предложений.</li>
+        <li><strong>Выбираем голос чтеца (и главная фишка сервиса) 🎙️</strong> — можно выбрать готовый дикторский голос, а можно один раз надиктовать 30–60 секунд спокойного текста и клонировать свой собственный. Юмор ситуации: ваш голос будет звучать идеально ласково, ровно и терпеливо — даже если в реальности вы в этот момент моете посуду, находитесь на дежурстве или физически не способны говорить связными предложениями.</li>
+        <li><strong>Генерация и саунд-дизайн 🎵</strong> — примерно за минуту система:
+          <ul>
+            <li>сочиняет добрый сюжет, где нарисованный персонаж узнаётся с первых секунд;</li>
+            <li>озвучивает его выбранным тембром;</li>
+            <li>накладывает мягкий фоновый эмбиент (музыка автоматически притихает, пока звучит голос, и убаюкивает к финалу);</li>
+            <li>рендерит яркую цифровую книжную обложку «по мотивам рисунка».</li>
+          </ul>
+        </li>
+        <li><strong>Плеер, текст и кнопка для бабушек 🎉</strong> — сказку можно сразу включить в веб-плеере, почитать глазами как текст или отправить ссылку родственникам в WhatsApp/Telegram. Бабушки приходят в восторг от обложки, ребёнок горд тем, что его монстрик стал звездой эфира, а в детской комнате наконец-то наступает тишина.</li>
+      </ul>
+      <h2>Почему это заходит детям и взрослым?</h2>
+      <ul>
+        <li><strong>Ритуал без экранов:</strong> ребёнок не залипает в мелькающие мультики перед сном, а слушает мягкую историю, в которой герой плавно зевает, складывает крылья и ложится спать вместе с ним.</li>
+        <li><strong>Личное признание:</strong> для малыша это чистый восторг — его каракули не просто похвалили дежурным «молодец», они ожили в настоящей сказке.</li>
+        <li><strong>Бережёт нервы:</strong> минус одна вечерняя родительская повинность, плюс 10 минут тишины.</li>
+      </ul>
+
+      <h2>Примеры сказок</h2>
+      <p>Послушать, как это звучит вживую, можно на готовых примерах — с плеером, текстом и книжной обложкой:</p>
+      <ul class="story-examples">
+        <li><a href="https://drawstory.dvorzhik.site/share/b7a5f737b4d644818d304fb95f2ac531" target="_blank" rel="noopener noreferrer">Послушать пример сказки № 1 →</a></li>
+        <li><a href="https://drawstory.dvorzhik.site/share/d260626703ac4b9e8ea426c6c9b3bf9a" target="_blank" rel="noopener noreferrer">Послушать пример сказки № 2 →</a></li>
+      </ul>
+
+      <!-- Скриншоты: images/drawstory_1.jpg … drawstory_8.jpg (портретные, 576×1280).
+           Если файла нет, вместо него показывается рамка-заглушка «Скриншот скоро». -->
+      <h2>Скриншоты</h2>
+      <div class="shots">
+        <figure class="shot">
+          <img src="images/drawstory_1.jpg" alt="Шаг «Рисунок»: загрузка детского рисунка" loading="lazy" />
+          <figcaption>Шаг 1 — загрузка: фото или скан рисунка (PNG, JPG, WEBP)</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/drawstory_2.jpg" alt="Шаг «Ребёнок»: выбор имени и возраста" loading="lazy" />
+          <figcaption>Шаг 2 — для кого сказка: имя и возраст ребёнка</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/drawstory_3.jpg" alt="Шаг «Голос»: готовый чтец или клонирование своего" loading="lazy" />
+          <figcaption>Шаг 3 — голос: готовый чтец или клонирование собственного</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/drawstory_4.jpg" alt="Шаг «Сказка»: терапевтическая и познавательная" loading="lazy" />
+          <figcaption>Шаг 4 — тип сказки: терапевтическая, познавательная и другие</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/drawstory_5.jpg" alt="Типы сказок: поддержка, дорожная, приключение" loading="lazy" />
+          <figcaption>Ещё типы: сказка-поддержка, дорожная, приключение</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/drawstory_6.jpg" alt="Галерея «Мои сказки» с рисунками и обложками" loading="lazy" />
+          <figcaption>«Мои сказки»: готовые истории с рисунком и книжной обложкой</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/drawstory_7.jpg" alt="Карточка готовой сказки с плеером" loading="lazy" />
+          <figcaption>Готовая сказка: рисунок, сгенерированная обложка и плеер</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/drawstory_8.jpg" alt="Окно «Поделиться сказкой»" loading="lazy" />
+          <figcaption>Поделиться ссылкой: отправка в WhatsApp или Telegram</figcaption>
+        </figure>
+      </div>
+
+      <div class="actions-bottom title-actions">
+        <a class="btn-ghost" href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer">Открыть DrawStory →</a>
+      </div>
+    </article>
+
   </main>
 
   <footer>
@@ -485,11 +590,11 @@
 
   <script>
     // Данные программ для страницы «Узнать больше».
-    // rich: true — у программы есть подробный рассказ прямо в HTML (#program-rich),
-    // для остальных пока показывается заглушка (#program-stub).
+    // rich: true — у программы есть подробный рассказ (#program-rich-<id>),
+    // для остальных показывается заглушка (#program-stub).
     var PROGRAMS = {
       'seablitz':     { name: 'SeaBlitz', kinds: ['Игра', 'Веб-приложение', 'Telegram-bot'], app: 'https://seablitz.duckdns.org/', rich: true },
-      'drawstory':    { name: 'DrawStory', kinds: ['Веб-приложение'], app: 'https://drawstory.dvorzhik.site/' },
+      'drawstory':    { name: 'DrawStory', kinds: ['Веб-приложение'], app: 'https://drawstory.dvorzhik.site/', rich: true },
       'geminipoint':  { name: 'GeminiPoint', kinds: ['Веб-приложение'], app: 'https://geminipoint.dvorzhik.site/' },
       'personal-sky': { name: 'Personal Sky', kinds: ['Android-приложение'], app: 'https://www.dvorzhik.ru/personal-sky/' },
       'zenreader':    { name: 'ZenRead', kinds: ['Веб-приложение', 'Telegram-bot'], app: 'https://zenread.duckdns.org/' },
@@ -504,11 +609,20 @@
       document.title = p.name + ' — DVORZHIK · PROGRAMS';
 
       var stub = document.getElementById('program-stub');
-      var rich = document.getElementById('program-rich');
 
       if (p.rich) {
-        stub.hidden = true;
-        rich.hidden = false;
+        var rich = document.getElementById('program-rich-' + id);
+        if (rich) {
+          stub.hidden = true;
+          rich.hidden = false;
+
+          // Скриншотов может ещё не быть — вместо битых картинок показываем заглушки.
+          [].forEach.call(rich.querySelectorAll('.shot img'), function (img) {
+            var markEmpty = function () { img.parentNode.classList.add('is-empty'); };
+            if (img.complete && img.naturalWidth === 0) { markEmpty(); }
+            else { img.addEventListener('error', markEmpty); }
+          });
+        }
       } else {
         document.getElementById('program-name').textContent = p.name;
         document.getElementById('program-open').href = p.app;
@@ -516,13 +630,6 @@
           return '<span class="badge">' + k + '</span>';
         }).join('');
       }
-
-      // Скриншотов ещё нет — вместо битых картинок показываем рамки-заглушки.
-      [].forEach.call(rich.querySelectorAll('.shot img'), function (img) {
-        var markEmpty = function () { img.parentNode.classList.add('is-empty'); };
-        if (img.complete && img.naturalWidth === 0) { markEmpty(); }
-        else { img.addEventListener('error', markEmpty); }
-      });
     })();
   </script>
 
@@ -530,7 +637,7 @@
     // Лайтбокс: клик по скриншоту открывает его крупнее, ‹ › листают галерею,
     // Esc закрывает, стрелки клавиатуры листают. Клик по фону — тоже закрытие.
     (function () {
-      var shots = [].slice.call(document.querySelectorAll('#program-rich .shot'));
+      var shots = [].slice.call(document.querySelectorAll('.detail-rich:not([hidden]) .shot'));
       if (!shots.length) return;
 
       var items = shots.map(function (fig) {
