@@ -66,6 +66,201 @@
       transition: background-color 0.2s, transform 0.2s;
     }
     .btn-primary:hover { background: var(--accent-hover); color: #ffffff; transform: translateY(-2px); }
+    /* Кнопки-действия у заголовка: в покое «выключены» (прозрачные, только рамка),
+       заливаются акцентом лишь при наведении/фокусе. */
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent-hover);
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    /* Заголовок и кнопки-действия в одну строку (на узком экране переносятся) */
+    .title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 18px;
+      margin: 14px 0;
+    }
+    .title-row h1 { margin: 0; }
+    .title-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    /* Дублирующий блок кнопок под скриншотами */
+    .actions-bottom { margin-top: 28px; }
+
+    /* ---------- Расширенная карточка программы (рассказ) ---------- */
+    .cover { display: block; margin: 2px 0 22px; }
+    .cover img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: #ffffff;
+    }
+    .detail-rich h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 30px 0 10px;
+    }
+    .detail-rich p { margin: 12px 0; }
+    .detail-rich p.lead { margin-top: 0; }
+    .detail-rich ul { margin: 12px 0; padding-left: 22px; }
+    .detail-rich li { margin: 12px 0; }
+    .detail-rich li strong { color: var(--text-main); }
+    .detail-rich code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88em;
+      background: #eef2f7;
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 1px 6px;
+      white-space: nowrap;
+    }
+    .callout {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin: 22px 0;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+    }
+    .callout p { margin: 0; color: #713f12; }
+
+    /* ---------- Галерея скриншотов (портретные снимки с телефона) ---------- */
+    .shots {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .shots .shot { margin: 0; }
+    .shots .shot img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: #ffffff;
+    }
+    .shots .shot figcaption {
+      margin-top: 6px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    /* Пока файла скриншота нет — вместо битой картинки показываем рамку-заглушку */
+    .shots .shot.is-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 9 / 16;
+      border: 1px dashed var(--card-border);
+      border-radius: 12px;
+      background: #ffffff;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .shots .shot.is-empty::before { content: "Скриншот скоро"; }
+    .shots .shot.is-empty img,
+    .shots .shot.is-empty figcaption { display: none; }
+
+    /* Скриншот кликабелен: курсор-лупа и мягкий подъём при наведении */
+    .shots .shot:not(.is-empty) img { cursor: zoom-in; }
+    .shots .shot:not(.is-empty) img:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14); }
+
+    /* ---------- Лайтбокс: просмотр скриншота крупнее ---------- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 20px;
+      background: rgba(15, 23, 42, 0.92);
+    }
+    .lightbox[hidden] { display: none; }
+    .lightbox__stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 100%;
+      max-height: 100%;
+      margin: 0;
+    }
+    .lightbox__img {
+      display: block;
+      max-width: 100%;
+      max-height: calc(100vh - 132px);
+      border-radius: 12px;
+      background: #0f172a;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .lightbox__caption {
+      margin-top: 12px;
+      max-width: 640px;
+      text-align: center;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+    }
+    .lightbox__close,
+    .lightbox__nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      font-family: inherit;
+      line-height: 1;
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+    .lightbox__close:hover,
+    .lightbox__nav:hover,
+    .lightbox__close:focus-visible,
+    .lightbox__nav:focus-visible {
+      background: var(--accent);
+      border-color: var(--accent);
+      outline: none;
+    }
+    .lightbox__close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.7rem;
+    }
+    .lightbox__nav {
+      flex: 0 0 auto;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      font-size: 1.8rem;
+    }
+    body.lightbox-open { overflow: hidden; }
     footer {
       border-top: 1px solid var(--card-border);
       margin-top: 48px;
@@ -74,10 +269,45 @@
       color: var(--text-muted);
       font-size: 0.9rem;
     }
+    /* Подвал: кнопка слева, копирайт строго по центру (боковые колонки равны). */
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 10px 16px;
+    }
+    .footer-btn { justify-self: start; }
+    .footer-copy { justify-self: center; text-align: center; }
+    .footer-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.85rem;
+      line-height: 1;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .footer-btn:hover,
+    .footer-btn:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent-hover);
+      transform: translateY(-2px);
+      outline: none;
+    }
     @media (max-width: 480px) {
       .container { padding: 0 14px; }
       .detail { padding: 26px 20px; }
       h1 { font-size: 1.5rem; }
+      .footer-inner { grid-template-columns: 1fr; justify-items: center; }
+      .footer-btn, .footer-copy { justify-self: center; }
+      .lightbox { gap: 8px; padding: 12px; }
+      .lightbox__nav { width: 38px; height: 38px; font-size: 1.5rem; }
+      .lightbox__close { width: 38px; height: 38px; font-size: 1.4rem; }
+      .lightbox__caption { font-size: 0.82rem; }
     }
   </style>
   <!-- Google Analytics 4 (gtag.js) -->
@@ -94,24 +324,111 @@
   <main class="container">
     <a class="back" href="index.html">← К программам</a>
 
-    <article class="detail">
+    <article class="detail" id="program-stub">
       <div id="program-badges"></div>
       <h1 id="program-name">Программа</h1>
       <p class="lead">Здесь скоро появится подробный рассказ о программе: как она появилась, что умеет и кому будет полезна.</p>
       <p class="lead" style="margin-top: 10px;">А пока её можно открыть и попробовать.</p>
       <a class="btn-primary" id="program-open" href="index.html">Открыть →</a>
     </article>
+
+    <article class="detail detail-rich" id="program-rich" hidden>
+      <a class="cover" href="https://seablitz.duckdns.org/" target="_blank" rel="noopener noreferrer" aria-label="Открыть SeaBlitz">
+        <img src="images/seablitz_app.jpg" alt="SeaBlitz — морской бой на поле 5×5" />
+      </a>
+
+      <div>
+        <span class="badge">Игра</span>
+        <span class="badge">Веб-приложение</span>
+        <span class="badge">Telegram-bot</span>
+      </div>
+      <div class="title-row">
+        <h1>SeaBlitz</h1>
+        <div class="title-actions">
+          <a class="btn-ghost" href="https://seablitz.duckdns.org/" target="_blank" rel="noopener noreferrer">Играть в веб-версии →</a>
+          <a class="btn-ghost" href="https://t.me/seablitz_bot" target="_blank" rel="noopener noreferrer">Открыть в Telegram →</a>
+        </div>
+      </div>
+
+      <p class="lead">Классический «Морской бой» в школьной тетрадке помнят все: вырванный из середины листок в клетку, старательно нарисованные координаты «А-Б-В...», четырехпалубный линкор у самого края и двадцать минут унылой переклички: <em>«Б-4? Мимо. В-7? Мимо. А куда ты стрелял три хода назад?»</em>. В детстве на уроке географии это казалось увлекательным, но современный ритм жизни вынес этой медитации приговор.</p>
+
+      <p>Сегодня мир живет на бегу. Поездка в метро, очередь за эспрессо, перерыв между созвонами — у нас физически нет пятнадцати минут на расстановку торпедных катеров и позиционную войну в пустой воде. Современные казуальные игры требуют совсем другой скорости: мгновенный вход, чистый концентрат дофамина, финал за одну минуту и ноль утомительного ожидания.</p>
+
+      <p>Именно из этой идеи родился <strong>SeaBlitz</strong> — морской бой, разогнанный до скорости современного мессенджера.</p>
+
+      <h2>Чем SeaBlitz отличается от дедушкиного морского боя</h2>
+      <ul>
+        <li><strong>Компактная арена 5×5 вместо 10×10:</strong> Здесь нет бескрайних морских просторов, где можно полчаса гонять чаек. Поле 5×5 — это тесная гавань на 25 клеток, где спрятано всего три корабля: трехпалубный флагман, двухпалубный корвет и юркий однопалубный катер (суммарно 6 клеток). Правило старой школы сохранено: корабли не касаются друг друга даже углами.</li>
+        <li><strong>Ноль рутины с расстановкой:</strong> Больше не нужно мучительно думать, куда приткнуть лодку, пока соперник прикрывает свой листок пеналом. Сервер генерирует честную расстановку за сотую долю секунды. Открыл — и ты уже в бою.</li>
+        <li><strong>Одновременные залпы тройками (Simultaneous Volleys):</strong> Главный тормоз классики — ожидание хода противника, пока тот разглядывает потолок. В SeaBlitz ходов по очереди нет. Таймер отсчитывает 10 секунд, за которые оба адмирала выбирают сразу по 3 клетки на чужом поле и жмут кнопку «ОГОНЬ!».</li>
+        <li><strong>Зазевался — получил залп наугад:</strong> Если в пылу раздумий адмирал отвлекся на баристу или переписку и не успел нажать кнопку, бортовой компьютер не ждет: недостающие выстрелы гремят в случайные координаты. Динамика не провисает ни на секунду.</li>
+        <li><strong>Партия ровно на 40 секунд:</strong> При такой плотности огня и компактной акватории случайных выстрелов в молоко почти не бывает. Четыре-пять раундов — и чей-то флот уже булькает на дне. Это идеальный формат микро-дуэли: проиграл — жми реванш, выиграл — гордись победой.</li>
+      </ul>
+
+      <h2>Почему это затягивает в Telegram</h2>
+      <p>SeaBlitz задуман не как громоздкое приложение, которое нужно ставить из стора, а как инструмент быстрого спора прямо в Telegram Mini App.</p>
+
+      <p>Нужно решить в рабочем чате, кто сегодня идет за пиццей? Скидывается инлайн-вызов: <code>@seablitz_bot дуэль</code>. Соперник жмет одну кнопку, у обоих прямо в чате раскрывается неоновый тактический радар, сорок секунд одновременной пальбы, виброотклик от попаданий — и вопрос закрыт без споров в переписке.</p>
+
+      <div class="callout">
+        <p>А если живой оппонент пошел пить кофе, на боевом мостике всегда дежурит <strong>🏴‍☠️ Капитан Бот</strong> — железный корсар, который не знает пощады, бьет без промаха и никогда не просит тайм-аут.</p>
+      </div>
+
+      <!-- Скриншоты: images/seablitz_1.jpg … seablitz_4.jpg (портретные, 576×1280).
+           Пока файла нет, вместо него показывается рамка-заглушка «Скриншот скоро». -->
+      <h2>Скриншоты</h2>
+      <div class="shots">
+        <figure class="shot">
+          <img src="images/seablitz_1.jpg" alt="Стартовый экран SeaBlitz с правилами и режимами игры" loading="lazy" />
+          <figcaption>Стартовый экран: правила на одном слайде и три режима — быстрый бой, игра с ботом, вызов другу</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/seablitz_2.jpg" alt="Залп: выбор трёх клеток на поле врага под таймером" loading="lazy" />
+          <figcaption>Залп: отсчёт 10 секунд, три клетки на поле врага и кнопка «ОГОНЬ!»</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/seablitz_3.jpg" alt="Поле врага с попаданиями, промахами и счётом партии" loading="lazy" />
+          <figcaption>Раунд 6: попадания — звёздочками, промахи — точками, счёт обоих флотов виден сразу</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/seablitz_4.jpg" alt="Экран победы со статистикой попаданий и кнопкой реванша" loading="lazy" />
+          <figcaption>Победа: статистика попаданий, кнопка «Реванш» и возможность поделиться результатом</figcaption>
+        </figure>
+      </div>
+
+      <div class="actions-bottom title-actions">
+        <a class="btn-ghost" href="https://seablitz.duckdns.org/" target="_blank" rel="noopener noreferrer">Играть в веб-версии →</a>
+        <a class="btn-ghost" href="https://t.me/seablitz_bot" target="_blank" rel="noopener noreferrer">Открыть в Telegram →</a>
+      </div>
+
+    </article>
   </main>
 
   <footer>
-    <div class="container"><a href="https://t.me/dvorzhik" target="_blank" rel="noopener noreferrer">© Aleksandr Dvorzhitckii</a></div>
+    <div class="container footer-inner">
+      <a class="footer-btn" href="index.html">← К программам</a>
+      <a class="footer-copy" href="https://t.me/dvorzhik" target="_blank" rel="noopener noreferrer">© Aleksandr Dvorzhitckii</a>
+    </div>
   </footer>
+
+  <!-- Лайтбокс для просмотра скриншотов крупнее (наполняется скриптом ниже) -->
+  <div class="lightbox" id="lightbox" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Просмотр скриншота">
+    <button type="button" class="lightbox__close" id="lightbox-close" aria-label="Закрыть">×</button>
+    <button type="button" class="lightbox__nav" id="lightbox-prev" aria-label="Предыдущий скриншот">‹</button>
+    <figure class="lightbox__stage">
+      <img class="lightbox__img" id="lightbox-img" alt="" />
+      <figcaption class="lightbox__caption" id="lightbox-caption"></figcaption>
+    </figure>
+    <button type="button" class="lightbox__nav" id="lightbox-next" aria-label="Следующий скриншот">›</button>
+  </div>
+
 
   <script>
     // Данные программ для страницы «Узнать больше».
-    // Пока это страница-заглушка — текст рассказа добавим позже.
+    // rich: true — у программы есть подробный рассказ прямо в HTML (#program-rich),
+    // для остальных пока показывается заглушка (#program-stub).
     var PROGRAMS = {
-      'seablitz':     { name: 'SeaBlitz', kinds: ['Игра', 'Веб-приложение', 'Telegram-bot'], app: 'https://seablitz.duckdns.org/' },
+      'seablitz':     { name: 'SeaBlitz', kinds: ['Игра', 'Веб-приложение', 'Telegram-bot'], app: 'https://seablitz.duckdns.org/', rich: true },
       'drawstory':    { name: 'DrawStory', kinds: ['Веб-приложение'], app: 'https://drawstory.dvorzhik.site/' },
       'geminipoint':  { name: 'GeminiPoint', kinds: ['Веб-приложение'], app: 'https://geminipoint.dvorzhik.site/' },
       'personal-sky': { name: 'Personal Sky', kinds: ['Android-приложение'], app: 'https://www.dvorzhik.ru/personal-sky/' },
@@ -124,12 +441,108 @@
       var id = new URLSearchParams(window.location.search).get('id');
       var p = PROGRAMS[id];
       if (!p) return;
-      document.getElementById('program-name').textContent = p.name;
-      document.getElementById('program-open').href = p.app;
-      document.getElementById('program-badges').innerHTML = p.kinds.map(function (k) {
-        return '<span class="badge">' + k + '</span>';
-      }).join('');
       document.title = p.name + ' — DVORZHIK · PROGRAMS';
+
+      var stub = document.getElementById('program-stub');
+      var rich = document.getElementById('program-rich');
+
+      if (p.rich) {
+        stub.hidden = true;
+        rich.hidden = false;
+      } else {
+        document.getElementById('program-name').textContent = p.name;
+        document.getElementById('program-open').href = p.app;
+        document.getElementById('program-badges').innerHTML = p.kinds.map(function (k) {
+          return '<span class="badge">' + k + '</span>';
+        }).join('');
+      }
+
+      // Скриншотов ещё нет — вместо битых картинок показываем рамки-заглушки.
+      [].forEach.call(rich.querySelectorAll('.shot img'), function (img) {
+        var markEmpty = function () { img.parentNode.classList.add('is-empty'); };
+        if (img.complete && img.naturalWidth === 0) { markEmpty(); }
+        else { img.addEventListener('error', markEmpty); }
+      });
+    })();
+  </script>
+
+  <script>
+    // Лайтбокс: клик по скриншоту открывает его крупнее, ‹ › листают галерею,
+    // Esc закрывает, стрелки клавиатуры листают. Клик по фону — тоже закрытие.
+    (function () {
+      var shots = [].slice.call(document.querySelectorAll('#program-rich .shot'));
+      if (!shots.length) return;
+
+      var items = shots.map(function (fig) {
+        var img = fig.querySelector('img');
+        var cap = fig.querySelector('figcaption');
+        return {
+          figure: fig,
+          img: img,
+          src: img.getAttribute('src'),
+          alt: img.getAttribute('alt') || '',
+          caption: cap ? cap.textContent : ''
+        };
+      }).filter(function (it) { return it.img; });
+
+      var box = document.getElementById('lightbox');
+      var boxImg = document.getElementById('lightbox-img');
+      var boxCap = document.getElementById('lightbox-caption');
+      var btnClose = document.getElementById('lightbox-close');
+      var btnPrev = document.getElementById('lightbox-prev');
+      var btnNext = document.getElementById('lightbox-next');
+      if (!box || !boxImg || !boxCap || !btnClose || !btnPrev || !btnNext) return;
+
+      var current = 0;
+      var lastFocus = null;
+
+      function show(i) {
+        current = (i + items.length) % items.length;
+        var it = items[current];
+        boxImg.src = it.src;
+        boxImg.alt = it.alt;
+        boxCap.textContent = it.caption;
+      }
+
+      function open(i) {
+        lastFocus = document.activeElement;
+        show(i);
+        box.hidden = false;
+        box.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lightbox-open');
+        btnClose.focus();
+      }
+
+      function close() {
+        box.hidden = true;
+        box.setAttribute('aria-hidden', 'true');
+        boxImg.src = '';
+        document.body.classList.remove('lightbox-open');
+        if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
+      }
+
+      items.forEach(function (it, i) {
+        it.img.addEventListener('click', function () {
+          if (it.figure.classList.contains('is-empty')) return;
+          open(i);
+        });
+      });
+
+      btnPrev.addEventListener('click', function () { show(current - 1); });
+      btnNext.addEventListener('click', function () { show(current + 1); });
+      btnClose.addEventListener('click', close);
+
+      // Клик по затемнённому фону (не по картинке и не по кнопкам) закрывает.
+      box.addEventListener('click', function (e) {
+        if (e.target === box) { close(); }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (box.hidden) return;
+        if (e.key === 'Escape') { close(); }
+        else if (e.key === 'ArrowLeft') { show(current - 1); }
+        else if (e.key === 'ArrowRight') { show(current + 1); }
+      });
     })();
   </script>
 
