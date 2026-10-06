@@ -123,7 +123,8 @@
     }
     .detail-rich p { margin: 12px 0; }
     .detail-rich p.lead { margin-top: 0; }
-    .detail-rich ul { margin: 12px 0; padding-left: 22px; }
+    .detail-rich ul,
+    .detail-rich ol { margin: 12px 0; padding-left: 22px; }
     .detail-rich li { margin: 12px 0; }
     .detail-rich li strong { color: var(--text-main); }
     /* Ссылки на примеры готовых сказок */
@@ -557,6 +558,95 @@
         <a class="btn-ghost" href="https://drawstory.dvorzhik.site/" target="_blank" rel="noopener noreferrer">Открыть DrawStory →</a>
       </div>
     </article>
+    <article class="detail detail-rich" id="program-rich-geminipoint" hidden>
+      <a class="cover" href="https://geminipoint.dvorzhik.site/" target="_blank" rel="noopener noreferrer" aria-label="Открыть GeminiPoint">
+        <img src="images/geminipoint.jpg" alt="GeminiPoint — веб-доступ к моделям Google Gemini" />
+      </a>
+
+      <div>
+        <span class="badge">Веб-приложение</span>
+      </div>
+      <div class="title-row">
+        <h1>GeminiPoint</h1>
+        <div class="title-actions">
+          <a class="btn-ghost" href="https://geminipoint.dvorzhik.site/" target="_blank" rel="noopener noreferrer">Открыть GeminiPoint →</a>
+        </div>
+      </div>
+
+      <p class="lead">Как приручить ИИ без плясок с бубном.</p>
+
+      <p>Каждый, кто пробовал достучаться до топовых зарубежных нейросетей из России, знает этот увлекательный ежедневный квест:</p>
+      <ol>
+        <li>Включи VPN.</li>
+        <li>Подожди, пока он упадёт, и включи запасной VPN.</li>
+        <li>Достань виртуальную карту дружественной тропической республики, чтобы оплатить заветные $20.</li>
+        <li>В награду получи ошибку 403: Forbidden, потому что алгоритмы безопасности заподозрили в тебе жителя планеты Земля не из той юрисдикции.</li>
+      </ol>
+      <p>В какой-то момент эта утренняя гимнастика порядком надоела, и в лучших традициях прикладного вайбкодинга за один вечер появился <strong>GeminiPoint</strong> — чистый, быстрый и бесперебойный шлюз к передовым моделям Google Gemini.</p>
+
+      <h2>Что это такое на простом человеческом языке?</h2>
+      <p>Представьте, что вы решили спастись от летней жары и купить кондиционер. Приходите в магазин, а вам радостно выдают:</p>
+      <ul>
+        <li>разобранный компрессор;</li>
+        <li>пучок оголённых медных проводов;</li>
+        <li>инструкцию из иероглифов;</li>
+        <li>дружеский совет: «Сгоняй в другую страну за переходником на 110 вольт — и дуть будет отлично!»</li>
+      </ul>
+      <p>Большинство людей на этом моменте просто тяжело вздохнут и пойдут открывать форточку.</p>
+      <p>GeminiPoint — это тот самый кондиционер, только уже собранный, повешенный на стену, включённый в розетку и с удобным пультом прямо в руках. Вы просто переходите по короткой ссылке <code>geminipoint.dvorzhik.site</code> в любом браузере и работаете с нейросетью так же легко, как в любимом мессенджере.</p>
+
+      <h2>Главные фишки сервиса</h2>
+      <ul>
+        <li><strong>⚡ Работает сразу и отовсюду:</strong> никаких сторонних расширений, переключателей, прокси-клиентов и танцев с бубном. Открыл браузер на ПК, планшете или смартфоне — и работаешь.</li>
+        <li><strong>🧠 Понимает не только текст:</strong> в чат можно бросить скриншот с кодом ошибки, многостраничный PDF-отчёт, аналитическую таблицу, фото договора или аудиозапись — Gemini разберёт входные данные по полочкам и выдаст суть.</li>
+        <li><strong>🎨 Создание и обработка изображений:</strong> под капотом работают модели генерации и распознавания визуала.</li>
+        <li><strong>🔒 Здоровая паранойя «по умолчанию»:</strong> ваши конфиденциальные мысли, файлы и ответы модели не сохраняются на сервере. База сервера хранит только сухие технические метаданные расхода токенов. Вся переписка живёт исключительно локально в localStorage вашего собственного браузера — сервер просто физически не знает, какие секреты вы обсуждаете с машиной.</li>
+      </ul>
+      <h2>Архитектурный дзен: как это устроено под капотом</h2>
+      <p>Вся система спроектирована настолько легковесно, что сервер буквально скучает:</p>
+      <ul>
+        <li><strong>Ультралёгкий стек:</strong> бэкенд на FastAPI (Python) и фронтенд на чистом JavaScript — без тяжеловесных монструозных комбайнов и библиотек. Вся служба укладывается в скромные 40–70 МБ оперативной памяти.</li>
+        <li><strong>Хитрый мост:</strong> сервер развёрнут в Timeweb Cloud во Франкфурте. А поскольку Google любит перекрывать кислород запросам из европейских дата-центров, трафик аккуратно улетает через тихий SSH-туннель и крошечный tinyproxy на американском узле Oracle.</li>
+        <li><strong>Модели последнего поколения:</strong> за тексты, рассуждения и логику отвечает актуальная линейка Flash от Google (с миллионными контекстными окнами), а за визуал — специализированные модели генерации.</li>
+      </ul>
+
+      <h2>Для кого и зачем</h2>
+      <p>Изначально сервис строился как закрытый рабочий инструмент для коллег, чтобы избавить их от головной боли с зарубежными аккаунтами. Но на практике оказалось, что тихий, стабильный и быстрый веб-терминал с поддержкой документов критически нужен маркетологам, аналитикам, юристам, копирайтерам и небольшим студиям.</p>
+      <ul>
+        <li><strong>Для частных специалистов:</strong> фиксированная комфортная подписка (в районе 1 000 ₽ в месяц) с безлимитным текстом и запасом генераций — без возни с криптокошельками и зарубежными счетами.</li>
+        <li><strong>Для команд:</strong> возможность подключить сотрудников в один клик по корпоративной ссылке со скидкой.</li>
+      </ul>
+
+      <div class="callout">
+        <p><strong>Итог:</strong> никаких очередей, сбоев и шаманских обрядов. Просто чистая точка входа в интеллект Google.</p>
+      </div>
+
+      <!-- Скриншоты: images/geminipoint_1.jpg … geminipoint_4.jpg (портретные, 576×1280). -->
+      <h2>Скриншоты</h2>
+      <div class="shots">
+        <figure class="shot">
+          <img src="images/geminipoint_1.jpg" alt="Главный экран GeminiPoint" loading="lazy" />
+          <figcaption>Чистый чат с моделью Gemini — без VPN и установки</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/geminipoint_2.jpg" alt="Боковое меню с историей диалогов" loading="lazy" />
+          <figcaption>Боковое меню: история диалогов хранится локально в браузере</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/geminipoint_3.jpg" alt="Диалог с моделью прямо в чате" loading="lazy" />
+          <figcaption>Ответ модели прямо в чате — текст, рассуждения и шутки</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/geminipoint_4.jpg" alt="Раздел «Что умеет»" loading="lazy" />
+          <figcaption>«Что умеет»: диалог, генерация и редактирование картинок, работа с файлами</figcaption>
+        </figure>
+      </div>
+
+      <div class="actions-bottom title-actions">
+        <a class="btn-ghost" href="https://geminipoint.dvorzhik.site/" target="_blank" rel="noopener noreferrer">Открыть GeminiPoint →</a>
+      </div>
+    </article>
+
 
   </main>
 
@@ -595,7 +685,7 @@
     var PROGRAMS = {
       'seablitz':     { name: 'SeaBlitz', kinds: ['Игра', 'Веб-приложение', 'Telegram-bot'], app: 'https://seablitz.duckdns.org/', rich: true },
       'drawstory':    { name: 'DrawStory', kinds: ['Веб-приложение'], app: 'https://drawstory.dvorzhik.site/', rich: true },
-      'geminipoint':  { name: 'GeminiPoint', kinds: ['Веб-приложение'], app: 'https://geminipoint.dvorzhik.site/' },
+      'geminipoint':  { name: 'GeminiPoint', kinds: ['Веб-приложение'], app: 'https://geminipoint.dvorzhik.site/', rich: true },
       'personal-sky': { name: 'Personal Sky', kinds: ['Android-приложение'], app: 'https://www.dvorzhik.ru/personal-sky/' },
       'zenreader':    { name: 'ZenRead', kinds: ['Веб-приложение', 'Telegram-bot'], app: 'https://zenread.duckdns.org/' },
       'vizbor':       { name: 'Yuri Vizbor AI', kinds: ['Веб-приложение', 'Telegram-bot'], app: 'https://vizborbot-j9kyvder.manus.space/' },
